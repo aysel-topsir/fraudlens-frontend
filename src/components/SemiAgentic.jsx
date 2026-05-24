@@ -14,6 +14,18 @@ function SemiAgentic({ language = "tr" }) {
   const [analystError, setAnalystError] = useState("");
   const [analystReport, setAnalystReport] = useState(null);
 
+  const [featureLoading, setFeatureLoading] = useState(false);
+  const [featureError, setFeatureError] = useState("");
+  const [featureReport, setFeatureReport] = useState(null);
+
+  const [optimizerLoading, setOptimizerLoading] = useState(false);
+  const [optimizerError, setOptimizerError] = useState("");
+  const [optimizerReport, setOptimizerReport] = useState(null);
+
+  const [xaiLoading, setXaiLoading] = useState(false);
+  const [xaiError, setXaiError] = useState("");
+  const [xaiReport, setXaiReport] = useState(null);
+
   const text = {
     tr: {
       layer: "Yarı-Ajan Destek Katmanı",
@@ -43,6 +55,103 @@ function SemiAgentic({ language = "tr" }) {
       analystLoading: "Veri analisti raporu üretiliyor...",
       analystReportTitle: "Veri Analisti Raporu",
 
+      featureSelectorTitle: "2. Özellik Seçici",
+      featureSelectorDescription:
+        "Bu aşamada sistem hedef değişken ile ilişkili özellikleri, yüksek korelasyonlu tekrar eden değişkenleri ve modelleme için önerilen özellik alt kümesini değerlendirir.",
+      featureSelectorReportTitle: "Özellik Seçici Raporu",
+      runFeatureSelector: "ÖZELLİK SEÇİCİYİ ÇALIŞTIR",
+      featureSelectorLoading: "Özellik seçici raporu üretiliyor...",
+      selectedFeatures: "Seçilen Özellikler",
+      correlationRanking: "Korelasyon Sıralaması",
+      weakFeatures: "Zayıf Özellikler",
+      redundantPairs: "Tekrarlı / Yüksek Korelasyonlu Özellik Çiftleri",
+      recommendedRemoval: "Çıkarılması Önerilen Özellikler",
+      selectionMethod: "Seçim Yöntemi",
+      selectionThreshold: "Seçim Kriteri",
+      totalNumericFeatures: "Toplam Sayısal Özellik",
+      targetColumn: "Hedef Değişken",
+      recommendedMethod: "Önerilen Yöntem",
+      recommendedReason: "Öneri Gerekçesi",
+      correlationFS: "Correlation-based FS",
+      rfeFS: "RFE",
+      mrmrFS: "mRMR-inspired FS",
+      consensusSelectedFeatures: "Consensus Selected Features",
+      methodComparison: "Yöntem Karşılaştırması",
+      kFeatures: "Seçilen Özellik Sayısı",
+      method: "Yöntem",
+      interpretability: "Yorumlanabilirlik",
+      redundancyControl: "Redundancy Kontrolü",
+      stability: "Kararlılık",
+      thesisCompatibility: "Tez Uyumu",
+      selectedFeatureCount: "Seçilen Özellik Sayısı",
+      rank: "Sıra",
+      relevance: "Relevance",
+      redundancy: "Redundancy",
+      mrmrScore: "mRMR Skoru",
+      modelOptimizerTitle: "3. Model Optimize Edici",
+      modelOptimizerDescription:
+        "Bu aşamada hibrit modelleme mimarisi, eşik optimizasyonu, sınıf dengesizliği stratejisi, kalibrasyon ve nihai model önerisi değerlendirilir.",
+      modelOptimizerReportTitle: "Model Optimizer Raporu",
+      runModelOptimizer: "MODEL OPTIMIZER'I ÇALIŞTIR",
+      modelOptimizerLoading: "Model optimizer raporu üretiliyor...",
+      recommendedArchitecture: "Önerilen Mimari",
+      baselineModelComparison: "Baseline Model Karşılaştırması",
+      thresholdOptimization: "Threshold Optimization",
+      classImbalanceStrategy: "Class Imbalance Strategy",
+      calibrationReliability: "Calibration & Reliability",
+      hyperparameterStrategy: "Hyperparameter Strategy",
+      finalDecision: "Final Recommended Pipeline",
+      optimizerRecommendations: "Optimizer Recommendations",
+      architectureName: "Mimari",
+      metaLearner: "Meta Learner",
+      calibration: "Kalibrasyon",
+      thresholdStrategy: "Threshold Stratejisi",
+      preprocessing: "Preprocessing",
+      baseLearners: "Base Learners",
+      role: "Rol",
+      strength: "Güçlü Yön",
+      limitation: "Sınırlılık",
+      defaultThreshold: "Varsayılan Threshold",
+      optimizedThreshold: "Optimize Threshold",
+      searchRange: "Arama Aralığı",
+      searchStep: "Adım",
+      diagnosis: "Tanı",
+      strategy: "Strateji",
+      purpose: "Amaç",
+      searchType: "Arama Tipi",
+      evaluatedParameters: "Değerlendirilen Parametreler",
+      recommendedPipeline: "Önerilen Pipeline",
+      summary: "Özet",
+      model: "Model",
+      testSetPerformance: "Test Set Performance Summary",
+      architecture: "Mimari",
+      threshold: "Threshold",
+      accuracy: "Accuracy",
+      precisionWeighted: "Precision Weighted",
+      recallWeighted: "Recall Weighted",
+      f1Weighted: "F1 Weighted",
+      balancedAccuracy: "Balanced Accuracy",
+      appGear: "AppGear",
+      fraudPrecision: "Fraud Precision",
+      fraudRecall: "Fraud Recall",
+      xaiTitle: "4. XAI / Explainability Agent",
+      xaiDescription:
+        "Bu aşamada model kararlarının açıklanabilirliği, etkili finansal oranlar ve analist-destekli risk yorumları üretilir.",
+      runXai: "XAI AGENT'I ÇALIŞTIR",
+      xaiLoading: "XAI raporu üretiliyor...",
+      explainabilityMethod: "Explainability Method",
+      xaiTopFeatures: "En Etkili Finansal Oranlar",
+      xaiRiskNarrative: "Risk Narrative",
+      xaiConfidence: "Confidence Interpretation",
+      xaiRecommendations: "XAI Recommendations",
+      importanceProxy: "Importance",
+      direction: "Direction",
+      interpretation: "Interpretation",
+      modelOptimizerBackendError:
+        "Backend bağlantısı kurulamadı veya Model Optimizer raporu üretilemedi.",
+      featureSelectorBackendError:
+        "Backend bağlantısı kurulamadı veya özellik seçici raporu üretilemedi.",
+
       fileLabel: "CSV Dosyası",
       filePlaceholder: "Henüz dosya seçilmedi.",
       selectedFile: "Seçilen dosya",
@@ -50,6 +159,13 @@ function SemiAgentic({ language = "tr" }) {
       previewLoading: "Veri analiz ediliyor...",
       startButton: "PIPELINE’I BAŞLAT",
       resetButton: "SIFIRLA",
+      previousStage: "← Önceki Aşamaya Dön",
+      downloadReport: "RAPORU İNDİR",
+      completeAnalysis: "ANALİZİ TAMAMLA",
+      newAnalysis: "YENİ ANALİZ BAŞLAT",
+      pipelineCompletedTitle: "Pipeline Tamamlandı",
+      pipelineCompletedText:
+        "Semi-agentic analiz süreci başarıyla tamamlandı. Veri analizi, özellik seçimi, model optimizasyonu ve açıklanabilirlik raporu üretildi.",
 
       noteTitle: "Varsayılan Analiz Planı",
       noteText:
@@ -81,10 +197,8 @@ function SemiAgentic({ language = "tr" }) {
       nextStageText:
         "Veri önizleme raporunu kontrol ettikten sonra Veri Analisti aşamasına geçebilirsiniz.",
 
-      descriptiveStatistics: "Tanımlayıcı İstatistikler",
       outliers: "Aykırı Değerler",
       targetCorrelations: "Hedef Değişken Korelasyonları",
-      featureRedundancy: "Özellik Tekrarı / Yüksek Korelasyon",
       recommendations: "Öneriler",
 
       datasetOverview: "1. Dataset Overview",
@@ -97,14 +211,17 @@ function SemiAgentic({ language = "tr" }) {
       preprocessingRecommendations: "8. Preprocessing Recommendations",
 
       variable: "Değişken",
+      feature: "Özellik",
       average: "Ortalama",
       stdDeviation: "Std. Sapma",
       min: "Min",
       max: "Maks",
       outlierCount: "Aykırı Gözlem Sayısı",
       correlation: "Korelasyon",
+      absoluteCorrelation: "Mutlak Korelasyon",
       featureA: "Özellik A",
       featureB: "Özellik B",
+      suggestion: "Öneri",
 
       noFileWarning: "Lütfen önce bir CSV dosyası seçin.",
       backendError:
@@ -141,6 +258,103 @@ function SemiAgentic({ language = "tr" }) {
       analystLoading: "Generating Data Analyst report...",
       analystReportTitle: "Data Analyst Report",
 
+      featureSelectorTitle: "2. Feature Selector",
+      featureSelectorDescription:
+        "At this stage, the system evaluates target-related features, highly correlated redundant variables, and the recommended feature subset for modeling.",
+      featureSelectorReportTitle: "Feature Selector Report",
+      runFeatureSelector: "RUN FEATURE SELECTOR",
+      featureSelectorLoading: "Generating Feature Selector report...",
+      selectedFeatures: "Selected Features",
+      correlationRanking: "Correlation Ranking",
+      weakFeatures: "Weak Features",
+      redundantPairs: "Redundant / Highly Correlated Feature Pairs",
+      recommendedRemoval: "Recommended Feature Removal",
+      selectionMethod: "Selection Method",
+      selectionThreshold: "Selection Criterion",
+      totalNumericFeatures: "Total Numeric Features",
+      targetColumn: "Target Column",
+      recommendedMethod: "Recommended Method",
+      recommendedReason: "Recommendation Rationale",
+      correlationFS: "Correlation-based FS",
+      rfeFS: "RFE",
+      mrmrFS: "mRMR-inspired FS",
+      consensusSelectedFeatures: "Consensus Selected Features",
+      methodComparison: "Method Comparison",
+      kFeatures: "Selected Feature Count",
+      method: "Method",
+      interpretability: "Interpretability",
+      redundancyControl: "Redundancy Control",
+      stability: "Stability",
+      thesisCompatibility: "Thesis Compatibility",
+      selectedFeatureCount: "Selected Feature Count",
+      rank: "Rank",
+      relevance: "Relevance",
+      redundancy: "Redundancy",
+      mrmrScore: "mRMR Score",
+      modelOptimizerTitle: "3. Model Optimizer",
+      modelOptimizerDescription:
+        "At this stage, the hybrid modeling architecture, threshold optimization, class imbalance strategy, calibration, and final model recommendation are evaluated.",
+      modelOptimizerReportTitle: "Model Optimizer Report",
+      runModelOptimizer: "RUN MODEL OPTIMIZER",
+      modelOptimizerLoading: "Generating Model Optimizer report...",
+      recommendedArchitecture: "Recommended Architecture",
+      baselineModelComparison: "Baseline Model Comparison",
+      thresholdOptimization: "Threshold Optimization",
+      classImbalanceStrategy: "Class Imbalance Strategy",
+      calibrationReliability: "Calibration & Reliability",
+      hyperparameterStrategy: "Hyperparameter Strategy",
+      finalDecision: "Final Recommended Pipeline",
+      optimizerRecommendations: "Optimizer Recommendations",
+      architectureName: "Architecture",
+      metaLearner: "Meta Learner",
+      calibration: "Calibration",
+      thresholdStrategy: "Threshold Strategy",
+      preprocessing: "Preprocessing",
+      baseLearners: "Base Learners",
+      role: "Role",
+      strength: "Strength",
+      limitation: "Limitation",
+      defaultThreshold: "Default Threshold",
+      optimizedThreshold: "Optimized Threshold",
+      searchRange: "Search Range",
+      searchStep: "Step",
+      diagnosis: "Diagnosis",
+      strategy: "Strategy",
+      purpose: "Purpose",
+      searchType: "Search Type",
+      evaluatedParameters: "Evaluated Parameters",
+      recommendedPipeline: "Recommended Pipeline",
+      summary: "Summary",
+      model: "Model",
+      testSetPerformance: "Test Set Performance Summary",
+      architecture: "Architecture",
+      threshold: "Threshold",
+      accuracy: "Accuracy",
+      precisionWeighted: "Precision Weighted",
+      recallWeighted: "Recall Weighted",
+      f1Weighted: "F1 Weighted",
+      balancedAccuracy: "Balanced Accuracy",
+      appGear: "AppGear",
+      fraudPrecision: "Fraud Precision",
+      fraudRecall: "Fraud Recall",
+      xaiTitle: "4. XAI / Explainability Agent",
+      xaiDescription:
+        "At this stage, model explainability, influential financial ratios, and analyst-oriented fraud-risk interpretations are generated.",
+      runXai: "RUN XAI AGENT",
+      xaiLoading: "Generating XAI report...",
+      explainabilityMethod: "Explainability Method",
+      xaiTopFeatures: "Top Influential Financial Ratios",
+      xaiRiskNarrative: "Risk Narrative",
+      xaiConfidence: "Confidence Interpretation",
+      xaiRecommendations: "XAI Recommendations",
+      importanceProxy: "Importance",
+      direction: "Direction",
+      interpretation: "Interpretation",
+      modelOptimizerBackendError:
+        "Backend connection could not be established or Model Optimizer report could not be generated.",
+      featureSelectorBackendError:
+        "Backend connection could not be established or Feature Selector report could not be generated.",
+
       fileLabel: "CSV File",
       filePlaceholder: "No file selected yet.",
       selectedFile: "Selected file",
@@ -148,6 +362,13 @@ function SemiAgentic({ language = "tr" }) {
       previewLoading: "Analyzing data...",
       startButton: "START PIPELINE",
       resetButton: "RESET",
+      previousStage: "← Previous Stage",
+      downloadReport: "DOWNLOAD REPORT",
+      completeAnalysis: "COMPLETE ANALYSIS",
+      newAnalysis: "START NEW ANALYSIS",
+      pipelineCompletedTitle: "Pipeline Completed",
+      pipelineCompletedText:
+        "The semi-agentic analysis workflow has been completed successfully. Data analysis, feature selection, model optimization, and explainability reports were generated.",
 
       noteTitle: "Default Analysis Plan",
       noteText:
@@ -179,10 +400,8 @@ function SemiAgentic({ language = "tr" }) {
       nextStageText:
         "After reviewing the data preview report, you can proceed to the Data Analyst stage.",
 
-      descriptiveStatistics: "Descriptive Statistics",
       outliers: "Outliers",
       targetCorrelations: "Target Correlations",
-      featureRedundancy: "Feature Redundancy",
       recommendations: "Recommendations",
 
       datasetOverview: "1. Dataset Overview",
@@ -195,14 +414,17 @@ function SemiAgentic({ language = "tr" }) {
       preprocessingRecommendations: "8. Preprocessing Recommendations",
 
       variable: "Variable",
+      feature: "Feature",
       average: "Mean",
       stdDeviation: "Std. Deviation",
       min: "Min",
       max: "Max",
       outlierCount: "Outlier Count",
       correlation: "Correlation",
+      absoluteCorrelation: "Absolute Correlation",
       featureA: "Feature A",
       featureB: "Feature B",
+      suggestion: "Suggestion",
 
       noFileWarning: "Please select a CSV file first.",
       backendError:
@@ -221,9 +443,58 @@ function SemiAgentic({ language = "tr" }) {
     </div>
   );
 
+  function getStageTitle() {
+    if (currentStage === 0) return t.uploadTitle;
+    if (currentStage === 1) return t.analystTitle;
+    if (currentStage === 2) return t.featureSelectorTitle;
+    if (currentStage === 3) return `3. ${t.modelOptimizer}`;
+    return `4. ${t.xaiAgent}`;
+  }
+
+  function getStageDescription() {
+    if (currentStage === 0) return t.uploadDescription;
+    if (currentStage === 1) return t.analystDescription;
+    if (currentStage === 2) return t.featureSelectorDescription;
+    if (currentStage === 3) return t.modelOptimizerDescription;
+    return t.xaiDescription;
+  }
+
   function formatNumber(value) {
     if (typeof value === "number") return Number(value).toFixed(4);
     return value ?? "-";
+  }
+
+  function handlePreviousStage() {
+    setCurrentStage((stage) => Math.max(stage - 1, 0));
+  }
+
+  function handleDownloadAgenticReport() {
+    const reportPayload = {
+      generatedAt: new Date().toISOString(),
+      language,
+      fileName: selectedFile?.name ?? null,
+      reports: {
+        dataPreview: previewData,
+        dataAnalyst: analystReport,
+        featureSelector: featureReport,
+        modelOptimizer: optimizerReport,
+        xaiAgent: xaiReport,
+      },
+    };
+
+    const blob = new Blob([JSON.stringify(reportPayload, null, 2)], {
+      type: "application/json",
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = `semi-agentic-report-${Date.now()}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   }
 
   function getClassDescription(classKey) {
@@ -236,37 +507,15 @@ function SemiAgentic({ language = "tr" }) {
     if (!previewData) return [];
 
     return [
-      {
-        icon: "▦",
-        label: t.rowCount,
-        value: previewData.datasetOverview?.rowCount ?? "-",
-      },
-      {
-        icon: "▥",
-        label: t.columnCount,
-        value: previewData.datasetOverview?.columnCount ?? "-",
-      },
-      {
-        icon: "#",
-        label: t.numericColumnCount,
-        value: previewData.datasetOverview?.numericColumnCount ?? "-",
-      },
-      {
-        icon: "▣",
-        label: t.duplicateRows,
-        value: previewData.datasetOverview?.duplicateRows ?? "-",
-      },
-      {
-        icon: "−",
-        label: t.totalMissingValues,
-        value: previewData.datasetOverview?.totalMissingValues ?? "-",
-      },
+      { icon: "▦", label: t.rowCount, value: previewData.datasetOverview?.rowCount ?? "-" },
+      { icon: "▥", label: t.columnCount, value: previewData.datasetOverview?.columnCount ?? "-" },
+      { icon: "#", label: t.numericColumnCount, value: previewData.datasetOverview?.numericColumnCount ?? "-" },
+      { icon: "▣", label: t.duplicateRows, value: previewData.datasetOverview?.duplicateRows ?? "-" },
+      { icon: "−", label: t.totalMissingValues, value: previewData.datasetOverview?.totalMissingValues ?? "-" },
       {
         icon: "⊙",
         label: t.hasClassColumn,
-        value: previewData.datasetOverview?.hasClassColumn
-          ? t.exists
-          : t.notExists,
+        value: previewData.datasetOverview?.hasClassColumn ? t.exists : t.notExists,
       },
     ];
   }
@@ -286,6 +535,10 @@ function SemiAgentic({ language = "tr" }) {
     setPreviewError("");
     setAnalystReport(null);
     setAnalystError("");
+    setFeatureReport(null);
+    setFeatureError("");
+    setOptimizerReport(null);
+    setOptimizerError("");
   }
 
   async function handlePreview() {
@@ -300,15 +553,14 @@ function SemiAgentic({ language = "tr" }) {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
+    formData.append("language", language);
+    formData.append("language", language);
 
     try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/agentic/upload-preview",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("http://127.0.0.1:8000/agentic/upload-preview", {
+        method: "POST",
+        body: formData,
+      });
 
       const data = await response.json();
 
@@ -342,13 +594,10 @@ function SemiAgentic({ language = "tr" }) {
     formData.append("instruction", analystInstruction);
 
     try {
-      const response = await fetch(
-        "http://127.0.0.1:8000/agentic/data-analyst",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("http://127.0.0.1:8000/agentic/data-analyst", {
+        method: "POST",
+        body: formData,
+      });
 
       const data = await response.json();
 
@@ -364,6 +613,109 @@ function SemiAgentic({ language = "tr" }) {
     }
   }
 
+  async function handleRunFeatureSelector() {
+    if (!selectedFile) {
+      alert(t.noFileWarning);
+      return;
+    }
+
+    setFeatureLoading(true);
+    setFeatureError("");
+    setFeatureReport(null);
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/agentic/feature-selector", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || data.status !== "success") {
+        throw new Error(data.message || t.featureSelectorBackendError);
+      }
+
+      setFeatureReport(data.report);
+    } catch (error) {
+      setFeatureError(error.message || t.featureSelectorBackendError);
+    } finally {
+      setFeatureLoading(false);
+    }
+  }
+
+
+  async function handleRunModelOptimizer() {
+    if (!selectedFile) {
+      alert(t.noFileWarning);
+      return;
+    }
+
+    setOptimizerLoading(true);
+    setOptimizerError("");
+    setOptimizerReport(null);
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    formData.append("language", language);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/agentic/model-optimizer", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || data.status !== "success") {
+        throw new Error(data.message || t.modelOptimizerBackendError);
+      }
+
+      setOptimizerReport(data.report);
+    } catch (error) {
+      setOptimizerError(error.message || t.modelOptimizerBackendError);
+    } finally {
+      setOptimizerLoading(false);
+    }
+  }
+
+
+  async function handleRunXai() {
+    if (!selectedFile) {
+      alert(t.noFileWarning);
+      return;
+    }
+
+    setXaiLoading(true);
+    setXaiError("");
+    setXaiReport(null);
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    formData.append("language", language);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/agentic/xai-agent", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || data.status !== "success") {
+        throw new Error(data.message || "XAI report generation failed.");
+      }
+
+      setXaiReport(data.report);
+    } catch (error) {
+      setXaiError(error.message || "XAI backend error.");
+    } finally {
+      setXaiLoading(false);
+    }
+  }
+
   function handleReset() {
     setSelectedFile(null);
     setUploadCompleted(false);
@@ -374,6 +726,15 @@ function SemiAgentic({ language = "tr" }) {
     setAnalystLoading(false);
     setAnalystError("");
     setAnalystReport(null);
+    setFeatureLoading(false);
+    setFeatureError("");
+    setFeatureReport(null);
+    setOptimizerLoading(false);
+    setOptimizerError("");
+    setOptimizerReport(null);
+    setXaiLoading(false);
+    setXaiError("");
+    setXaiReport(null);
   }
 
   const steps = [
@@ -384,9 +745,7 @@ function SemiAgentic({ language = "tr" }) {
     { id: 4, title: t.xaiAgent },
   ];
 
-  const visiblePreviewColumns = previewData
-    ? previewData.columns.slice(0, 8)
-    : [];
+  const visiblePreviewColumns = previewData ? previewData.columns.slice(0, 8) : [];
 
   const topStatistics = analystReport
     ? Object.entries(analystReport.statistics || {}).slice(0, 8)
@@ -402,6 +761,18 @@ function SemiAgentic({ language = "tr" }) {
 
   const topRedundancy = analystReport
     ? (analystReport.featureRedundancy || []).slice(0, 8)
+    : [];
+
+  const featureRanking = featureReport
+    ? (featureReport.correlationRanking || []).slice(0, 10)
+    : [];
+
+  const weakFeatures = featureReport
+    ? (featureReport.weakFeatures || []).slice(0, 10)
+    : [];
+
+  const redundantPairs = featureReport
+    ? (featureReport.redundantPairs || []).slice(0, 10)
     : [];
 
   return (
@@ -440,21 +811,37 @@ function SemiAgentic({ language = "tr" }) {
       <section className="agent-main-panel agent-main-panel-wide">
         <div className="agent-card">
           <span className="section-kicker">{t.layer}</span>
+          <h2>{getStageTitle()}</h2>
+          <p className="description">{getStageDescription()}</p>
 
-          <h2>{currentStage === 0 ? t.uploadTitle : t.analystTitle}</h2>
+          {currentStage > 0 && (
+            <div className="agent-action-row">
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={handlePreviousStage}
+              >
+                {t.previousStage}
+              </button>
 
-          <p className="description">
-            {currentStage === 0 ? t.uploadDescription : t.analystDescription}
-          </p>
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={handleDownloadAgenticReport}
+                disabled={!previewData && !analystReport && !featureReport && !optimizerReport && !xaiReport}
+              >
+                {t.downloadReport}
+              </button>
+            </div>
+          )}
+
 
           {currentStage === 0 && (
             <>
               <div className="upload-box">
                 <label>{t.fileLabel}</label>
-
                 <div className="upload-input-row">
                   <input type="file" accept=".csv" onChange={handleFileChange} />
-
                   <span>
                     {selectedFile
                       ? `${t.selectedFile}: ${selectedFile.name}`
@@ -473,11 +860,7 @@ function SemiAgentic({ language = "tr" }) {
                   {previewLoading ? t.previewLoading : t.previewButton}
                 </button>
 
-                <button
-                  type="button"
-                  className="secondary-button"
-                  onClick={handleReset}
-                >
+                <button type="button" className="secondary-button" onClick={handleReset}>
                   {t.resetButton}
                 </button>
               </div>
@@ -490,9 +873,7 @@ function SemiAgentic({ language = "tr" }) {
                 <textarea
                   className="agent-textarea"
                   value={analystInstruction}
-                  onChange={(event) =>
-                    setAnalystInstruction(event.target.value)
-                  }
+                  onChange={(event) => setAnalystInstruction(event.target.value)}
                   placeholder={t.analystPlaceholder}
                 />
 
@@ -506,11 +887,7 @@ function SemiAgentic({ language = "tr" }) {
                     {analystLoading ? t.analystLoading : t.runAnalyst}
                   </button>
 
-                  <button
-                    type="button"
-                    className="secondary-button"
-                    onClick={handleReset}
-                  >
+                  <button type="button" className="secondary-button" onClick={handleReset}>
                     {t.resetButton}
                   </button>
                 </div>
@@ -518,17 +895,704 @@ function SemiAgentic({ language = "tr" }) {
             </div>
           )}
 
-          {previewError && (
-            <div className="professional-alert error-alert">
-              {previewError}
+          {currentStage === 2 && (
+            <div className="agent-report-card">
+              <div className="agent-report-header">
+                <div>
+                  <span className="agent-kicker">{t.layer}</span>
+                  <h3>{t.featureSelectorReportTitle}</h3>
+                </div>
+
+                <span className="agent-status-badge">
+                  {featureReport ? t.completed : t.active}
+                </span>
+              </div>
+
+              {!featureReport && (
+                <ReportSection title={t.featureSelectorTitle}>
+                  <p>
+                    {language === "tr"
+                      ? "Bu aşamada Correlation FS, RFE ve mRMR-inspired özellik seçimi yöntemleri ayrı ayrı çalıştırılacak; ardından yöntem karşılaştırması ve önerilen nihai strateji üretilecektir."
+                      : "At this stage, Correlation FS, RFE, and mRMR-inspired feature selection methods will be executed separately; then method comparison and the recommended final strategy will be generated."}
+                  </p>
+
+                  <div className="agent-action-row analyst-action-row">
+                    <button
+                      type="button"
+                      className="primary-button"
+                      onClick={handleRunFeatureSelector}
+                      disabled={featureLoading}
+                    >
+                      {featureLoading ? t.featureSelectorLoading : t.runFeatureSelector}
+                    </button>
+
+                    <button type="button" className="secondary-button" onClick={handleReset}>
+                      {t.resetButton}
+                    </button>
+                  </div>
+                </ReportSection>
+              )}
+
+              {featureReport && (
+                <>
+                  <ReportSection title={t.recommendedMethod}>
+                    <div className="pro-metric-grid">
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">★</div>
+                        <div>
+                          <span>{t.recommendedMethod}</span>
+                          <strong>{featureReport.recommendedMethod ?? "-"}</strong>
+                        </div>
+                      </div>
+
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">#</div>
+                        <div>
+                          <span>{t.kFeatures}</span>
+                          <strong>{featureReport.kFeatures ?? "-"}</strong>
+                        </div>
+                      </div>
+
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">⊙</div>
+                        <div>
+                          <span>{t.targetColumn}</span>
+                          <strong>{featureReport.targetColumn ?? "-"}</strong>
+                        </div>
+                      </div>
+
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">▥</div>
+                        <div>
+                          <span>{t.totalNumericFeatures}</span>
+                          <strong>{featureReport.totalNumericFeatures ?? "-"}</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p>{featureReport.recommendedReason}</p>
+                  </ReportSection>
+
+                  <ReportSection title={t.methodComparison}>
+                    <div className="agent-preview-table-wrap">
+                      <table className="agent-preview-table">
+                        <thead>
+                          <tr>
+                            <th>{t.method}</th>
+                            <th>{t.selectedFeatureCount}</th>
+                            <th>{t.interpretability}</th>
+                            <th>{t.redundancyControl}</th>
+                            <th>{t.stability}</th>
+                            <th>{t.thesisCompatibility}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {(featureReport.methodComparison || []).map((item) => (
+                            <tr key={item.method}>
+                              <td>{item.method}</td>
+                              <td>{item.selectedFeatureCount}</td>
+                              <td>{item.interpretability}</td>
+                              <td>{item.redundancyControl}</td>
+                              <td>{item.stability}</td>
+                              <td>{item.thesisCompatibility}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </ReportSection>
+
+                  <div className="pro-report-grid">
+                    <ReportSection title={t.correlationFS}>
+                      <div className="agent-column-grid">
+                        {(featureReport.correlationFS?.selectedFeatures || []).map((feature) => (
+                          <span key={feature}>{feature}</span>
+                        ))}
+                      </div>
+                    </ReportSection>
+
+                    <ReportSection title={t.rfeFS}>
+                      <div className="agent-column-grid">
+                        {(featureReport.rfeFS?.selectedFeatures || []).map((feature) => (
+                          <span key={feature}>{feature}</span>
+                        ))}
+                      </div>
+                    </ReportSection>
+                  </div>
+
+                  <ReportSection title={t.mrmrFS}>
+                    <div className="agent-column-grid">
+                      {(featureReport.mrmrFS?.selectedFeatures || []).map((feature) => (
+                        <span key={feature}>{feature}</span>
+                      ))}
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.consensusSelectedFeatures}>
+                    <div className="agent-column-grid">
+                      {(featureReport.consensusSelectedFeatures || []).length > 0 ? (
+                        featureReport.consensusSelectedFeatures.map((feature) => (
+                          <span key={feature}>{feature}</span>
+                        ))
+                      ) : (
+                        <span>-</span>
+                      )}
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.correlationRanking}>
+                    <div className="agent-preview-table-wrap">
+                      <table className="agent-preview-table">
+                        <thead>
+                          <tr>
+                            <th>{t.feature}</th>
+                            <th>{t.correlation}</th>
+                            <th>{t.absoluteCorrelation}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {(featureReport.correlationFS?.ranking || [])
+                            .slice(0, 10)
+                            .map((item) => (
+                              <tr key={item.feature}>
+                                <td>{item.feature}</td>
+                                <td>{formatNumber(item.correlation)}</td>
+                                <td>{formatNumber(item.absoluteCorrelation)}</td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.mrmrFS}>
+                    <div className="agent-preview-table-wrap">
+                      <table className="agent-preview-table">
+                        <thead>
+                          <tr>
+                            <th>{t.feature}</th>
+                            <th>{t.relevance}</th>
+                            <th>{t.redundancy}</th>
+                            <th>{t.mrmrScore}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {(featureReport.mrmrFS?.ranking || [])
+                            .slice(0, 10)
+                            .map((item) => (
+                              <tr key={item.feature}>
+                                <td>{item.feature}</td>
+                                <td>{formatNumber(item.relevance)}</td>
+                                <td>{formatNumber(item.redundancy)}</td>
+                                <td>{formatNumber(item.mrmrScore)}</td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.rfeFS}>
+                    <div className="agent-preview-table-wrap">
+                      <table className="agent-preview-table">
+                        <thead>
+                          <tr>
+                            <th>{t.feature}</th>
+                            <th>{t.rank}</th>
+                            <th>{t.selectedFeatures}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {(featureReport.rfeFS?.ranking || [])
+                            .slice(0, 10)
+                            .map((item) => (
+                              <tr key={item.feature}>
+                                <td>{item.feature}</td>
+                                <td>{item.rank}</td>
+                                <td>{item.selected ? "Yes" : "No"}</td>
+                              </tr>
+                            ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.redundantPairs}>
+                    <div className="agent-preview-table-wrap">
+                      <table className="agent-preview-table">
+                        <thead>
+                          <tr>
+                            <th>{t.featureA}</th>
+                            <th>{t.featureB}</th>
+                            <th>{t.correlation}</th>
+                            <th>{t.suggestion}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {(featureReport.redundantPairs || []).length > 0 ? (
+                            featureReport.redundantPairs.slice(0, 10).map((item, index) => (
+                              <tr key={`${item.featureA}-${item.featureB}-${index}`}>
+                                <td>{item.featureA}</td>
+                                <td>{item.featureB}</td>
+                                <td>{formatNumber(item.correlation)}</td>
+                                <td>{item.suggestion}</td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan="4">-</td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.recommendedRemoval}>
+                    <div className="agent-column-grid">
+                      {(featureReport.recommendedRemoval || []).length > 0 ? (
+                        featureReport.recommendedRemoval.map((feature) => (
+                          <span key={feature}>{feature}</span>
+                        ))
+                      ) : (
+                        <span>-</span>
+                      )}
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.recommendations}>
+                    <div className="agent-note-box">
+                      {(featureReport.recommendations || []).map((item, index) => (
+                        <p key={index}>• {item}</p>
+                      ))}
+                    </div>
+                  </ReportSection>
+
+                  <div className="agent-next-step-box">
+                    <div>
+                      <h4>
+                        {language === "tr"
+                          ? "Özellik Seçimi Aşamasını Onayla"
+                          : "Approve Feature Selection Stage"}
+                      </h4>
+                      <p>
+                        {language === "tr"
+                          ? "Özellik seçimi raporunu kontrol ettikten sonra Model Optimizer aşamasına geçebilirsiniz."
+                          : "After reviewing the Feature Selector report, you can proceed to the Model Optimizer stage."}
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="primary-button"
+                      onClick={() => setCurrentStage(3)}
+                    >
+                      {language === "tr"
+                        ? "ONAYLA → MODEL OPTIMIZER"
+                        : "APPROVE → MODEL OPTIMIZER"}
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           )}
 
-          {analystError && (
-            <div className="professional-alert error-alert">
-              {analystError}
+          {currentStage === 3 && (
+            <div className="agent-report-card">
+              <div className="agent-report-header">
+                <div>
+                  <span className="agent-kicker">{t.layer}</span>
+                  <h3>{t.modelOptimizerReportTitle}</h3>
+                </div>
+
+                <span className="agent-status-badge">
+                  {optimizerReport ? t.completed : t.active}
+                </span>
+              </div>
+
+              {!optimizerReport && (
+                <ReportSection title={t.modelOptimizerTitle}>
+                  <p>{t.modelOptimizerDescription}</p>
+
+                  <div className="agent-action-row analyst-action-row">
+                    <button
+                      type="button"
+                      className="primary-button"
+                      onClick={handleRunModelOptimizer}
+                      disabled={optimizerLoading}
+                    >
+                      {optimizerLoading ? t.modelOptimizerLoading : t.runModelOptimizer}
+                    </button>
+
+                    <button type="button" className="secondary-button" onClick={handleReset}>
+                      {t.resetButton}
+                    </button>
+                  </div>
+                </ReportSection>
+              )}
+
+              {optimizerReport && (
+                <>
+                  <ReportSection title={t.recommendedArchitecture}>
+                    <div className="pro-metric-grid">
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">▣</div>
+                        <div>
+                          <span>{t.architectureName}</span>
+                          <strong>{optimizerReport.recommendedArchitecture?.name ?? "-"}</strong>
+                        </div>
+                      </div>
+
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">⊙</div>
+                        <div>
+                          <span>{t.metaLearner}</span>
+                          <strong>{optimizerReport.recommendedArchitecture?.metaLearner ?? "-"}</strong>
+                        </div>
+                      </div>
+
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">%</div>
+                        <div>
+                          <span>{t.optimizedThreshold}</span>
+                          <strong>{optimizerReport.thresholdOptimization?.optimizedThreshold ?? "-"}</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p>{optimizerReport.recommendedArchitecture?.calibration}</p>
+                    <p>{optimizerReport.recommendedArchitecture?.thresholdStrategy}</p>
+                  </ReportSection>
+
+                  <div className="pro-report-grid">
+                    <ReportSection title={t.preprocessing}>
+                      <div className="agent-column-grid">
+                        {(optimizerReport.recommendedArchitecture?.preprocessing || []).map((item) => (
+                          <span key={item}>{item}</span>
+                        ))}
+                      </div>
+                    </ReportSection>
+
+                    <ReportSection title={t.baseLearners}>
+                      <div className="agent-column-grid">
+                        {(optimizerReport.recommendedArchitecture?.baseLearners || []).map((item) => (
+                          <span key={item}>{item}</span>
+                        ))}
+                      </div>
+                    </ReportSection>
+                  </div>
+
+                  <ReportSection title={t.testSetPerformance}>
+                    <div className="agent-preview-table-wrap">
+                      <table className="agent-preview-table">
+                        <thead>
+                          <tr>
+                            <th>{t.architecture}</th>
+                            <th>{t.threshold}</th>
+                            <th>{t.accuracy}</th>
+                            <th>{t.precisionWeighted}</th>
+                            <th>{t.recallWeighted}</th>
+                            <th>{t.f1Weighted}</th>
+                            <th>{t.balancedAccuracy}</th>
+                            <th>{t.appGear}</th>
+                            <th>{t.fraudPrecision}</th>
+                            <th>{t.fraudRecall}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {[
+                            optimizerReport.testSetPerformance?.baseHybridFixedThreshold,
+                            optimizerReport.testSetPerformance?.optimizedOOFStacking,
+                          ].filter(Boolean).map((item) => (
+                            <tr key={item.architecture}>
+                              <td>{item.architecture}</td>
+                              <td>{item.threshold}</td>
+                              <td>{formatNumber(item.accuracy)}</td>
+                              <td>{formatNumber(item.precisionWeighted)}</td>
+                              <td>{formatNumber(item.recallWeighted)}</td>
+                              <td>{formatNumber(item.f1Weighted)}</td>
+                              <td>{formatNumber(item.balancedAccuracy)}</td>
+                              <td>{formatNumber(item.appGear)}</td>
+                              <td>{formatNumber(item.fraudPrecision)}</td>
+                              <td>{formatNumber(item.fraudRecall)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <p>{optimizerReport.testSetPerformance?.note}</p>
+                  </ReportSection>
+
+                  <ReportSection title={t.baselineModelComparison}>
+                    <div className="agent-preview-table-wrap">
+                      <table className="agent-preview-table">
+                        <thead>
+                          <tr>
+                            <th>{t.model}</th>
+                            <th>{t.role}</th>
+                            <th>{t.strength}</th>
+                            <th>{t.limitation}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {(optimizerReport.baselineModelComparison || []).map((item) => (
+                            <tr key={item.model}>
+                              <td>{item.model}</td>
+                              <td>{item.role}</td>
+                              <td>{item.strength}</td>
+                              <td>{item.limitation}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.thresholdOptimization}>
+                    <div className="pro-metric-grid">
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">0.5</div>
+                        <div>
+                          <span>{t.defaultThreshold}</span>
+                          <strong>{optimizerReport.thresholdOptimization?.defaultThreshold}</strong>
+                        </div>
+                      </div>
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">✓</div>
+                        <div>
+                          <span>{t.optimizedThreshold}</span>
+                          <strong>{optimizerReport.thresholdOptimization?.optimizedThreshold}</strong>
+                        </div>
+                      </div>
+                      <div className="pro-metric-card">
+                        <div className="pro-metric-icon">↔</div>
+                        <div>
+                          <span>{t.searchRange}</span>
+                          <strong>{optimizerReport.thresholdOptimization?.searchRange}</strong>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p>{optimizerReport.thresholdOptimization?.rationale}</p>
+                  </ReportSection>
+
+                  <ReportSection title={t.classImbalanceStrategy}>
+                    <p>{optimizerReport.classImbalanceStrategy?.diagnosis}</p>
+                    <div className="agent-note-box">
+                      <p>• {optimizerReport.classImbalanceStrategy?.recommendation}</p>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.calibrationReliability}>
+                    <p><strong>{t.strategy}:</strong> {optimizerReport.calibrationReliability?.strategy}</p>
+                    <p><strong>{t.purpose}:</strong> {optimizerReport.calibrationReliability?.purpose}</p>
+                    <p>{optimizerReport.calibrationReliability?.recommendation}</p>
+                  </ReportSection>
+
+                  <ReportSection title={t.hyperparameterStrategy}>
+                    <p><strong>{t.searchType}:</strong> {optimizerReport.hyperparameterStrategy?.searchType}</p>
+                    <p><strong>{t.metaLearner}:</strong> {optimizerReport.hyperparameterStrategy?.metaLearnerCandidate}</p>
+
+                    <div className="agent-column-grid">
+                      {(optimizerReport.hyperparameterStrategy?.evaluatedParameters || []).map((item) => (
+                        <span key={item}>{item}</span>
+                      ))}
+                    </div>
+
+                    <p>{optimizerReport.hyperparameterStrategy?.recommendation}</p>
+                  </ReportSection>
+
+                  <ReportSection title={t.optimizerRecommendations}>
+                    <div className="agent-note-box">
+                      {(optimizerReport.optimizerRecommendations || []).map((item, index) => (
+                        <p key={index}>• {item}</p>
+                      ))}
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.finalDecision}>
+                    <div className="agent-column-grid">
+                      {(optimizerReport.finalDecision?.recommendedPipeline || []).map((item) => (
+                        <span key={item}>{item}</span>
+                      ))}
+                    </div>
+
+                    <p>{optimizerReport.finalDecision?.summary}</p>
+                  </ReportSection>
+
+                  <div className="agent-next-step-box">
+                    <div>
+                      <h4>
+                        {language === "tr"
+                          ? "Model Optimizer Aşamasını Onayla"
+                          : "Approve Model Optimizer Stage"}
+                      </h4>
+                      <p>
+                        {language === "tr"
+                          ? "Model optimizasyon raporunu kontrol ettikten sonra XAI / Explainability Agent aşamasına geçebilirsiniz."
+                          : "After reviewing the Model Optimizer report, you can proceed to the XAI / Explainability Agent stage."}
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="primary-button"
+                      onClick={() => setCurrentStage(4)}
+                    >
+                      {language === "tr"
+                        ? "ONAYLA → XAI AGENT"
+                        : "APPROVE → XAI AGENT"}
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           )}
+
+          {previewError && <div className="professional-alert error-alert">{previewError}</div>}
+          {analystError && <div className="professional-alert error-alert">{analystError}</div>}
+          {featureError && <div className="professional-alert error-alert">{featureError}</div>}
+
+          {currentStage === 4 && (
+            <div className="agent-report-card">
+              <div className="agent-report-header">
+                <div>
+                  <span className="agent-kicker">{t.layer}</span>
+                  <h3>{t.xaiTitle}</h3>
+                </div>
+
+                <span className="agent-status-badge">
+                  {xaiReport ? t.completed : t.active}
+                </span>
+              </div>
+
+              {!xaiReport && (
+                <ReportSection title={t.xaiTitle}>
+                  <p>{t.xaiDescription}</p>
+
+                  <div className="agent-action-row analyst-action-row">
+                    <button
+                      type="button"
+                      className="primary-button"
+                      onClick={handleRunXai}
+                      disabled={xaiLoading}
+                    >
+                      {xaiLoading ? t.xaiLoading : t.runXai}
+                    </button>
+
+                    <button type="button" className="secondary-button" onClick={handleReset}>
+                      {t.resetButton}
+                    </button>
+                  </div>
+                </ReportSection>
+              )}
+
+              {xaiReport && (
+                <>
+                  <ReportSection title={t.explainabilityMethod}>
+                    <div className="agent-note-box">
+                      <p><strong>{xaiReport.explainabilityMethod?.name}</strong></p>
+                      <p>{xaiReport.explainabilityMethod?.purpose}</p>
+                      <p>{xaiReport.explainabilityMethod?.scope}</p>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.xaiTopFeatures}>
+                    <div className="agent-preview-table-wrap">
+                      <table className="agent-preview-table">
+                        <thead>
+                          <tr>
+                            <th>{t.feature}</th>
+                            <th>{t.importanceProxy}</th>
+                            <th>{t.correlation}</th>
+                            <th>{t.direction}</th>
+                            <th>{t.interpretation}</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {(xaiReport.topInfluentialFeatures || []).map((item) => (
+                            <tr key={item.feature}>
+                              <td>{item.feature}</td>
+                              <td>{formatNumber(item.importanceProxy)}</td>
+                              <td>{formatNumber(item.correlation)}</td>
+                              <td>{item.direction}</td>
+                              <td>{item.interpretation}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.xaiRiskNarrative}>
+                    <div className="agent-note-box">
+                      <p>{xaiReport.riskNarrative?.summary}</p>
+                      <p>{xaiReport.riskNarrative?.analystInterpretation}</p>
+                      <p>{xaiReport.riskNarrative?.decisionSupportRole}</p>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.xaiConfidence}>
+                    <div className="agent-note-box">
+                      <p>{xaiReport.confidenceInterpretation?.lowRisk}</p>
+                      <p>{xaiReport.confidenceInterpretation?.highRisk}</p>
+                      <p>{xaiReport.confidenceInterpretation?.caution}</p>
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={t.xaiRecommendations}>
+                    <div className="agent-note-box">
+                      {(xaiReport.xaiRecommendations || []).map((item, index) => (
+                        <p key={index}>• {item}</p>
+                      ))}
+                    </div>
+                  </ReportSection>
+
+                  <ReportSection title={xaiReport.finalExplanation?.title}>
+                    <div className="agent-note-box">
+                      <p>{xaiReport.finalExplanation?.summary}</p>
+                    </div>
+                  </ReportSection>
+
+                  <div className="agent-next-step-box">
+                    <div>
+                      <h4>{t.pipelineCompletedTitle}</h4>
+                      <p>{t.pipelineCompletedText}</p>
+                    </div>
+
+                    <div className="agent-action-row">
+                      <button
+                        type="button"
+                        className="primary-button"
+                        onClick={handleDownloadAgenticReport}
+                      >
+                        {t.downloadReport}
+                      </button>
+
+                      <button
+                        type="button"
+                        className="secondary-button"
+                        onClick={handleReset}
+                      >
+                        {t.newAnalysis}
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+
+          {optimizerError && <div className="professional-alert error-alert">{optimizerError}</div>}
+          {xaiError && <div className="professional-alert error-alert">{xaiError}</div>}
 
           {currentStage === 0 && previewData && (
             <div className="agent-preview-report pro-preview-report">
@@ -556,17 +1620,14 @@ function SemiAgentic({ language = "tr" }) {
                         <th>{t.observationCount}</th>
                       </tr>
                     </thead>
-
                     <tbody>
-                      {Object.entries(previewData.classDistribution || {}).map(
-                        ([key, value]) => (
-                          <tr key={key}>
-                            <td>{key}</td>
-                            <td>{getClassDescription(key)}</td>
-                            <td>{value}</td>
-                          </tr>
-                        )
-                      )}
+                      {Object.entries(previewData.classDistribution || {}).map(([key, value]) => (
+                        <tr key={key}>
+                          <td>{key}</td>
+                          <td>{getClassDescription(key)}</td>
+                          <td>{value}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </ReportSection>
@@ -590,7 +1651,6 @@ function SemiAgentic({ language = "tr" }) {
                         ))}
                       </tr>
                     </thead>
-
                     <tbody>
                       {(previewData.previewRows || []).map((row, index) => (
                         <tr key={index}>
@@ -631,7 +1691,6 @@ function SemiAgentic({ language = "tr" }) {
                   <span className="agent-kicker">{t.layer}</span>
                   <h3>{t.analystReportTitle}</h3>
                 </div>
-
                 <span className="agent-status-badge">{t.completed}</span>
               </div>
 
@@ -641,9 +1700,7 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="pro-metric-icon">▦</div>
                     <div>
                       <span>{t.rowCount}</span>
-                      <strong>
-                        {analystReport.datasetOverview?.rowCount ?? "-"}
-                      </strong>
+                      <strong>{analystReport.datasetOverview?.rowCount ?? "-"}</strong>
                     </div>
                   </div>
 
@@ -651,9 +1708,7 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="pro-metric-icon">▥</div>
                     <div>
                       <span>{t.columnCount}</span>
-                      <strong>
-                        {analystReport.datasetOverview?.columnCount ?? "-"}
-                      </strong>
+                      <strong>{analystReport.datasetOverview?.columnCount ?? "-"}</strong>
                     </div>
                   </div>
 
@@ -661,10 +1716,7 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="pro-metric-icon">#</div>
                     <div>
                       <span>{t.numericColumnCount}</span>
-                      <strong>
-                        {analystReport.datasetOverview?.numericColumnCount ??
-                          "-"}
-                      </strong>
+                      <strong>{analystReport.datasetOverview?.numericColumnCount ?? "-"}</strong>
                     </div>
                   </div>
 
@@ -672,10 +1724,7 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="pro-metric-icon">−</div>
                     <div>
                       <span>{t.totalMissingValues}</span>
-                      <strong>
-                        {analystReport.datasetOverview?.totalMissingValues ??
-                          "-"}
-                      </strong>
+                      <strong>{analystReport.datasetOverview?.totalMissingValues ?? "-"}</strong>
                     </div>
                   </div>
                 </div>
@@ -690,17 +1739,14 @@ function SemiAgentic({ language = "tr" }) {
                       <th>{t.observationCount}</th>
                     </tr>
                   </thead>
-
                   <tbody>
-                    {Object.entries(analystReport.classDistribution || {}).map(
-                      ([key, value]) => (
-                        <tr key={key}>
-                          <td>{key}</td>
-                          <td>{getClassDescription(key)}</td>
-                          <td>{value}</td>
-                        </tr>
-                      )
-                    )}
+                    {Object.entries(analystReport.classDistribution || {}).map(([key, value]) => (
+                      <tr key={key}>
+                        <td>{key}</td>
+                        <td>{getClassDescription(key)}</td>
+                        <td>{value}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </ReportSection>
@@ -708,12 +1754,8 @@ function SemiAgentic({ language = "tr" }) {
               <ReportSection title={t.missingValueAnalysis}>
                 <p>
                   {language === "tr"
-                    ? `Toplam eksik değer sayısı: ${
-                        analystReport.datasetOverview?.totalMissingValues ?? "-"
-                      }. Eksik değer yapısı modelleme öncesinde kontrol edilmelidir.`
-                    : `Total missing values: ${
-                        analystReport.datasetOverview?.totalMissingValues ?? "-"
-                      }. Missing value structure should be checked before modeling.`}
+                    ? `Toplam eksik değer sayısı: ${analystReport.datasetOverview?.totalMissingValues ?? "-"}. Eksik değer yapısı modelleme öncesinde kontrol edilmelidir.`
+                    : `Total missing values: ${analystReport.datasetOverview?.totalMissingValues ?? "-"}. Missing value structure should be checked before modeling.`}
                 </p>
               </ReportSection>
 
@@ -725,7 +1767,6 @@ function SemiAgentic({ language = "tr" }) {
                       <th>{t.outlierCount}</th>
                     </tr>
                   </thead>
-
                   <tbody>
                     {topOutliers.map(([column, item]) => (
                       <tr key={column}>
@@ -749,7 +1790,6 @@ function SemiAgentic({ language = "tr" }) {
                         <th>{t.max}</th>
                       </tr>
                     </thead>
-
                     <tbody>
                       {topStatistics.map(([column, stats]) => (
                         <tr key={column}>
@@ -773,7 +1813,6 @@ function SemiAgentic({ language = "tr" }) {
                       <th>{t.correlation}</th>
                     </tr>
                   </thead>
-
                   <tbody>
                     {topCorrelations.map(([column, value]) => (
                       <tr key={column}>
@@ -795,7 +1834,6 @@ function SemiAgentic({ language = "tr" }) {
                         <th>{t.correlation}</th>
                       </tr>
                     </thead>
-
                     <tbody>
                       {topRedundancy.map((item, index) => (
                         <tr key={`${item.featureA}-${item.featureB}-${index}`}>

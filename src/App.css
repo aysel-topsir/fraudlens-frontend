@@ -1975,3 +1975,15 @@ input[readonly] {
   color: #42526e;
   font-size: 14px;
 }
+/* Semi-agentic geri dönüş / rapor indirme butonlarını belirginleştirme */
+.agent-action-row .secondary-button {
+  border: 1px solid #111827;
+  color: #111827;
+  background: #ffffff;
+  font-weight: 700;
+}
+
+.agent-action-row .secondary-button:hover {
+  background: #111827;
+  color: #ffffff;
+}
