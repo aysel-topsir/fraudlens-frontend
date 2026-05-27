@@ -73,47 +73,48 @@ function SemiAgentic({ language = "tr" }) {
       targetColumn: "Hedef Değişken",
       recommendedMethod: "Önerilen Yöntem",
       recommendedReason: "Öneri Gerekçesi",
-      correlationFS: "Correlation-based FS",
+      correlationFS: "Korelasyon Tabanlı Özellik Seçimi",
       rfeFS: "RFE",
-      mrmrFS: "mRMR-inspired FS",
-      consensusSelectedFeatures: "Consensus Selected Features",
+      mrmrFS: "mRMR Esinli Özellik Seçimi",
+      consensusSelectedFeatures: "Ortak Seçilen Özellikler",
       methodComparison: "Yöntem Karşılaştırması",
       kFeatures: "Seçilen Özellik Sayısı",
       method: "Yöntem",
       interpretability: "Yorumlanabilirlik",
-      redundancyControl: "Redundancy Kontrolü",
+      redundancyControl: "Tekrar Kontrolü",
       stability: "Kararlılık",
       thesisCompatibility: "Tez Uyumu",
       selectedFeatureCount: "Seçilen Özellik Sayısı",
       rank: "Sıra",
-      relevance: "Relevance",
-      redundancy: "Redundancy",
+      relevance: "İlişki Gücü",
+      redundancy: "Tekrar",
       mrmrScore: "mRMR Skoru",
+
       modelOptimizerTitle: "3. Model Optimize Edici",
       modelOptimizerDescription:
         "Bu aşamada hibrit modelleme mimarisi, eşik optimizasyonu, sınıf dengesizliği stratejisi, kalibrasyon ve nihai model önerisi değerlendirilir.",
-      modelOptimizerReportTitle: "Model Optimizer Raporu",
-      runModelOptimizer: "MODEL OPTIMIZER'I ÇALIŞTIR",
-      modelOptimizerLoading: "Model optimizer raporu üretiliyor...",
+      modelOptimizerReportTitle: "Model Optimize Edici Raporu",
+      runModelOptimizer: "MODEL OPTİMİZE EDİCİYİ ÇALIŞTIR",
+      modelOptimizerLoading: "Model optimize edici raporu üretiliyor...",
       recommendedArchitecture: "Önerilen Mimari",
-      baselineModelComparison: "Baseline Model Karşılaştırması",
-      thresholdOptimization: "Threshold Optimization",
+      baselineModelComparison: "Temel Model Karşılaştırması",
+      thresholdOptimization: "Eşik Optimizasyonu",
       classImbalanceStrategy: "Sınıf Dengesizliği Stratejisi",
       calibrationReliability: "Kalibrasyon ve Güvenilirlik",
       hyperparameterStrategy: "Hiperparametre Stratejisi",
-      finalDecision: "Final Recommended Pipeline",
+      finalDecision: "Nihai Önerilen Pipeline",
       optimizerRecommendations: "Optimize Edici Önerileri",
       architectureName: "Mimari",
-      metaLearner: "Meta Learner",
+      metaLearner: "Meta Öğrenici",
       calibration: "Kalibrasyon",
-      thresholdStrategy: "Threshold Stratejisi",
+      thresholdStrategy: "Eşik Stratejisi",
       preprocessing: "Ön İşleme",
-      baseLearners: "Base Learners",
+      baseLearners: "Temel Öğreniciler",
       role: "Rol",
       strength: "Güçlü Yön",
       limitation: "Sınırlılık",
-      defaultThreshold: "Varsayılan Threshold",
-      optimizedThreshold: "Optimize Threshold",
+      defaultThreshold: "Varsayılan Eşik",
+      optimizedThreshold: "Optimize Edilmiş Eşik",
       searchRange: "Arama Aralığı",
       searchStep: "Adım",
       diagnosis: "Tanı",
@@ -124,34 +125,38 @@ function SemiAgentic({ language = "tr" }) {
       recommendedPipeline: "Önerilen Pipeline",
       summary: "Özet",
       model: "Model",
-      testSetPerformance: "Test Set Performance Summary",
+      testSetPerformance: "Test Veri Seti Performans Özeti",
       architecture: "Mimari",
-      threshold: "Threshold",
-      accuracy: "Accuracy",
-      precisionWeighted: "Precision Weighted",
-      recallWeighted: "Recall Weighted",
-      f1Weighted: "F1 Weighted",
-      balancedAccuracy: "Balanced Accuracy",
+      threshold: "Eşik",
+      accuracy: "Doğruluk",
+      precisionWeighted: "Ağırlıklı Kesinlik",
+      recallWeighted: "Ağırlıklı Duyarlılık",
+      f1Weighted: "Ağırlıklı F1",
+      balancedAccuracy: "Dengeli Doğruluk",
       appGear: "AppGear",
-      fraudPrecision: "Fraud Precision",
-      fraudRecall: "Fraud Recall",
-      xaiTitle: "4. XAI / Explainability Agent",
+      fraudPrecision: "Hile Sınıfı Kesinlik",
+      fraudRecall: "Hile Sınıfı Duyarlılık",
+
+      xaiTitle: "4. XAI / Açıklanabilirlik Ajanı",
       xaiDescription:
-        "Bu aşamada model kararlarının açıklanabilirliği, etkili finansal oranlar ve analist-destekli risk yorumları üretilir.",
-      runXai: "XAI AGENT'I ÇALIŞTIR",
+        "Bu aşamada model kararlarının açıklanabilirliği, etkili finansal oranlar ve analist destekli risk yorumları üretilir.",
+      runXai: "XAI AJANINI ÇALIŞTIR",
       xaiLoading: "XAI raporu üretiliyor...",
-      explainabilityMethod: "Explainability Method",
+      explainabilityMethod: "Açıklanabilirlik Yöntemi",
       xaiTopFeatures: "En Etkili Finansal Oranlar",
-      xaiRiskNarrative: "Risk Narrative",
-      xaiConfidence: "Confidence Interpretation",
-      xaiRecommendations: "XAI Recommendations",
-      importanceProxy: "Importance",
-      direction: "Direction",
-      interpretation: "Interpretation",
+      xaiRiskNarrative: "Risk Anlatısı",
+      xaiConfidence: "Güven Yorumu",
+      xaiRecommendations: "XAI Önerileri",
+      importanceProxy: "Önem",
+      direction: "Yön",
+      interpretation: "Yorum",
+
       modelOptimizerBackendError:
-        "Backend bağlantısı kurulamadı veya Model Optimizer raporu üretilemedi.",
+        "Backend bağlantısı kurulamadı veya model optimize edici raporu üretilemedi.",
       featureSelectorBackendError:
         "Backend bağlantısı kurulamadı veya özellik seçici raporu üretilemedi.",
+      xaiBackendError:
+        "Backend bağlantısı kurulamadı veya XAI raporu üretilemedi.",
 
       fileLabel: "CSV Dosyası",
       filePlaceholder: "Henüz dosya seçilmedi.",
@@ -229,6 +234,27 @@ function SemiAgentic({ language = "tr" }) {
         "Backend bağlantısı kurulamadı veya CSV analizi üretilemedi.",
       analystBackendError:
         "Backend bağlantısı kurulamadı veya veri analisti raporu üretilemedi.",
+
+      approveDataAnalystTitle: "Veri Analisti Aşamasını Onayla",
+      approveDataAnalystText:
+        "Veri analisti raporunu kontrol ettikten sonra özellik seçimi aşamasına geçebilirsiniz.",
+      approveDataAnalystButton: "ONAYLA → ÖZELLİK SEÇİCİ",
+      approveFeatureTitle: "Özellik Seçimi Aşamasını Onayla",
+      approveFeatureText:
+        "Özellik seçimi raporunu kontrol ettikten sonra model optimize edici aşamasına geçebilirsiniz.",
+      approveFeatureButton: "ONAYLA → MODEL OPTİMİZE EDİCİ",
+      approveOptimizerTitle: "Model Optimize Edici Aşamasını Onayla",
+      approveOptimizerText:
+        "Model optimizasyon raporunu kontrol ettikten sonra XAI / açıklanabilirlik ajanı aşamasına geçebilirsiniz.",
+      approveOptimizerButton: "ONAYLA → XAI AJANI",
+
+      featureSelectorIntro:
+        "Bu aşamada korelasyon tabanlı özellik seçimi, RFE ve mRMR esinli özellik seçimi yöntemleri ayrı ayrı çalıştırılacak; ardından yöntem karşılaştırması ve önerilen nihai strateji üretilecektir.",
+      missingValueSentence:
+        "Toplam eksik değer sayısı: {count}. Eksik değer yapısı modelleme öncesinde kontrol edilmelidir.",
+
+      yes: "Evet",
+      no: "Hayır",
     },
 
     en: {
@@ -276,9 +302,9 @@ function SemiAgentic({ language = "tr" }) {
       targetColumn: "Target Column",
       recommendedMethod: "Recommended Method",
       recommendedReason: "Recommendation Rationale",
-      correlationFS: "Correlation-based FS",
+      correlationFS: "Correlation-based Feature Selection",
       rfeFS: "RFE",
-      mrmrFS: "mRMR-inspired FS",
+      mrmrFS: "mRMR-inspired Feature Selection",
       consensusSelectedFeatures: "Consensus Selected Features",
       methodComparison: "Method Comparison",
       kFeatures: "Selected Feature Count",
@@ -292,6 +318,7 @@ function SemiAgentic({ language = "tr" }) {
       relevance: "Relevance",
       redundancy: "Redundancy",
       mrmrScore: "mRMR Score",
+
       modelOptimizerTitle: "3. Model Optimizer",
       modelOptimizerDescription:
         "At this stage, the hybrid modeling architecture, threshold optimization, class imbalance strategy, calibration, and final model recommendation are evaluated.",
@@ -338,6 +365,7 @@ function SemiAgentic({ language = "tr" }) {
       appGear: "AppGear",
       fraudPrecision: "Fraud Precision",
       fraudRecall: "Fraud Recall",
+
       xaiTitle: "4. XAI / Explainability Agent",
       xaiDescription:
         "At this stage, model explainability, influential financial ratios, and analyst-oriented fraud-risk interpretations are generated.",
@@ -351,10 +379,13 @@ function SemiAgentic({ language = "tr" }) {
       importanceProxy: "Importance",
       direction: "Direction",
       interpretation: "Interpretation",
+
       modelOptimizerBackendError:
         "Backend connection could not be established or Model Optimizer report could not be generated.",
       featureSelectorBackendError:
         "Backend connection could not be established or Feature Selector report could not be generated.",
+      xaiBackendError:
+        "Backend connection could not be established or XAI report could not be generated.",
 
       fileLabel: "CSV File",
       filePlaceholder: "No file selected yet.",
@@ -406,7 +437,7 @@ function SemiAgentic({ language = "tr" }) {
       recommendations: "Recommendations",
 
       datasetOverview: "1. Dataset Overview",
-      classBalance: "2. Sınıf Dengesi",
+      classBalance: "2. Class Balance",
       missingValueAnalysis: "3. Missing Value Analysis",
       outlierDetection: "4. Outlier Detection",
       numericalFeatureSummary: "5. Numerical Feature Summary",
@@ -432,6 +463,27 @@ function SemiAgentic({ language = "tr" }) {
         "Backend connection could not be established or CSV analysis could not be generated.",
       analystBackendError:
         "Backend connection could not be established or Data Analyst report could not be generated.",
+
+      approveDataAnalystTitle: "Approve Data Analyst Stage",
+      approveDataAnalystText:
+        "After reviewing the Data Analyst report, you can proceed to the feature selection stage.",
+      approveDataAnalystButton: "APPROVE → FEATURE SELECTOR",
+      approveFeatureTitle: "Approve Feature Selection Stage",
+      approveFeatureText:
+        "After reviewing the Feature Selector report, you can proceed to the Model Optimizer stage.",
+      approveFeatureButton: "APPROVE → MODEL OPTIMIZER",
+      approveOptimizerTitle: "Approve Model Optimizer Stage",
+      approveOptimizerText:
+        "After reviewing the Model Optimizer report, you can proceed to the XAI / Explainability Agent stage.",
+      approveOptimizerButton: "APPROVE → XAI AGENT",
+
+      featureSelectorIntro:
+        "At this stage, correlation-based feature selection, RFE, and mRMR-inspired feature selection methods will be executed separately; then method comparison and the recommended final strategy will be generated.",
+      missingValueSentence:
+        "Total missing values: {count}. Missing value structure should be checked before modeling.",
+
+      yes: "Yes",
+      no: "No",
     },
   };
 
@@ -448,8 +500,8 @@ function SemiAgentic({ language = "tr" }) {
     if (currentStage === 0) return t.uploadTitle;
     if (currentStage === 1) return t.analystTitle;
     if (currentStage === 2) return t.featureSelectorTitle;
-    if (currentStage === 3) return `3. ${t.modelOptimizer}`;
-    return `4. ${t.xaiAgent}`;
+    if (currentStage === 3) return t.modelOptimizerTitle;
+    return t.xaiTitle;
   }
 
   function getStageDescription() {
@@ -508,15 +560,37 @@ function SemiAgentic({ language = "tr" }) {
     if (!previewData) return [];
 
     return [
-      { icon: "▦", label: t.rowCount, value: previewData.datasetOverview?.rowCount ?? "-" },
-      { icon: "▥", label: t.columnCount, value: previewData.datasetOverview?.columnCount ?? "-" },
-      { icon: "#", label: t.numericColumnCount, value: previewData.datasetOverview?.numericColumnCount ?? "-" },
-      { icon: "▣", label: t.duplicateRows, value: previewData.datasetOverview?.duplicateRows ?? "-" },
-      { icon: "−", label: t.totalMissingValues, value: previewData.datasetOverview?.totalMissingValues ?? "-" },
+      {
+        icon: "▦",
+        label: t.rowCount,
+        value: previewData.datasetOverview?.rowCount ?? "-",
+      },
+      {
+        icon: "▥",
+        label: t.columnCount,
+        value: previewData.datasetOverview?.columnCount ?? "-",
+      },
+      {
+        icon: "#",
+        label: t.numericColumnCount,
+        value: previewData.datasetOverview?.numericColumnCount ?? "-",
+      },
+      {
+        icon: "▣",
+        label: t.duplicateRows,
+        value: previewData.datasetOverview?.duplicateRows ?? "-",
+      },
+      {
+        icon: "−",
+        label: t.totalMissingValues,
+        value: previewData.datasetOverview?.totalMissingValues ?? "-",
+      },
       {
         icon: "⊙",
         label: t.hasClassColumn,
-        value: previewData.datasetOverview?.hasClassColumn ? t.exists : t.notExists,
+        value: previewData.datasetOverview?.hasClassColumn
+          ? t.exists
+          : t.notExists,
       },
     ];
   }
@@ -540,6 +614,8 @@ function SemiAgentic({ language = "tr" }) {
     setFeatureError("");
     setOptimizerReport(null);
     setOptimizerError("");
+    setXaiReport(null);
+    setXaiError("");
   }
 
   async function handlePreview() {
@@ -557,10 +633,13 @@ function SemiAgentic({ language = "tr" }) {
     formData.append("language", language);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/agentic/upload-preview", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://127.0.0.1:8000/agentic/upload-preview",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
@@ -591,13 +670,16 @@ function SemiAgentic({ language = "tr" }) {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
-    
+    formData.append("language", language);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/agentic/data-analyst", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://127.0.0.1:8000/agentic/data-analyst",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
@@ -625,12 +707,16 @@ function SemiAgentic({ language = "tr" }) {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
+    formData.append("language", language);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/agentic/feature-selector", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://127.0.0.1:8000/agentic/feature-selector",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
@@ -645,7 +731,6 @@ function SemiAgentic({ language = "tr" }) {
       setFeatureLoading(false);
     }
   }
-
 
   async function handleRunModelOptimizer() {
     if (!selectedFile) {
@@ -662,10 +747,13 @@ function SemiAgentic({ language = "tr" }) {
     formData.append("language", language);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/agentic/model-optimizer", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://127.0.0.1:8000/agentic/model-optimizer",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
@@ -680,7 +768,6 @@ function SemiAgentic({ language = "tr" }) {
       setOptimizerLoading(false);
     }
   }
-
 
   async function handleRunXai() {
     if (!selectedFile) {
@@ -697,20 +784,23 @@ function SemiAgentic({ language = "tr" }) {
     formData.append("language", language);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/agentic/xai-agent", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://127.0.0.1:8000/agentic/xai-agent",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
       if (!response.ok || data.status !== "success") {
-        throw new Error(data.message || "XAI report generation failed.");
+        throw new Error(data.message || t.xaiBackendError);
       }
 
       setXaiReport(data.report);
     } catch (error) {
-      setXaiError(error.message || "XAI backend error.");
+      setXaiError(error.message || t.xaiBackendError);
     } finally {
       setXaiLoading(false);
     }
@@ -745,7 +835,9 @@ function SemiAgentic({ language = "tr" }) {
     { id: 4, title: t.xaiAgent },
   ];
 
-  const visiblePreviewColumns = previewData ? previewData.columns.slice(0, 8) : [];
+  const visiblePreviewColumns = previewData
+    ? previewData.columns.slice(0, 8)
+    : [];
 
   const topStatistics = analystReport
     ? Object.entries(analystReport.statistics || {}).slice(0, 8)
@@ -763,10 +855,6 @@ function SemiAgentic({ language = "tr" }) {
     ? (analystReport.featureRedundancy || []).slice(0, 8)
     : [];
 
-  const featureRanking = featureReport
-    ? (featureReport.correlationRanking || []).slice(0, 10)
-    : [];
-
   const translateRatioName = (name) => {
     if (language !== "en") return name;
 
@@ -775,22 +863,21 @@ function SemiAgentic({ language = "tr" }) {
       "Asit Test Oran": "Acid-Test Ratio",
       "Asit Test Oranı": "Acid-Test Ratio",
       "FAVÖK Marjı": "EBITDA Margin",
-      "TB / Ö": "Total Assets / Equity",
+      "TB / Ö": "Total Liabilities / Equity",
       "NFB / Ö": "Net Financial Debt / Equity",
       "KVB / Ö": "Short-Term Liabilities / Equity",
-      "TK / Ö": "Total Liabilities / Equity",
+      "TK / Ö": "Total Assets / Equity",
       "N / KVB": "Cash / Short-Term Liabilities",
       "NDK / Ö": "Net Profit / Equity",
-      "İTTA / TTA": "Receivables / Total Assets",
-      "İTTB / TTB": "Receivables / Total Liabilities",
+      "İTTA / TTA": "Related-Party Receivables / Trade Receivables",
+      "İTTB / TTB": "Related-Party Payables / Trade Payables",
       "MDV / Ö": "Fixed Assets / Equity",
-      "H / TA": "Revenue / Total Assets",
+      "H / TA": "Revenue / Trade Receivables",
       "H / MDV": "Revenue / Fixed Assets",
-      "FAVÖK / İDAFG": "EBITDA / Financing Expenses",
-      "FAVÖK Marjı": "EBITDA Margin",
+      "FAVÖK / İDAFG": "EBITDA / Interest Expenses",
       "BK / H": "Gross Profit / Revenue",
       "VÖK / H": "Profit Before Tax / Revenue",
-      "NDK / TK": "Net Profit / Total Liabilities",
+      "NDK / TK": "Net Profit / Total Resources",
       "VÖK / Fgid": "Profit Before Tax / Finance Expenses",
       "SM / Stok": "Cost of Sales / Inventory",
       "H / TV": "Revenue / Total Assets",
@@ -804,30 +891,32 @@ function SemiAgentic({ language = "tr" }) {
       "TKVY / TÖ": "Short-Term Liabilities / Total Equity",
       "T.DÖN.V/ TKVY": "Current Assets / Short-Term Liabilities",
       "T.DÖN.V / TKVY": "Current Assets / Short-Term Liabilities",
-      "T.DÖN.V-Stok/ TKVY": "Current Assets minus Inventory / Short-Term Liabilities",
-      "T.DÖN.V-Stok / TKVY": "Current Assets minus Inventory / Short-Term Liabilities",
+      "T.DÖN.V-Stok/ TKVY":
+        "Current Assets minus Inventory / Short-Term Liabilities",
+      "T.DÖN.V-Stok / TKVY":
+        "Current Assets minus Inventory / Short-Term Liabilities",
       "NAKİT/ TKVY": "Cash / Short-Term Liabilities",
       "NAKİT / TKVY": "Cash / Short-Term Liabilities",
       "DK(Z)/TÖ": "Net Profit or Loss / Total Equity",
       "DK(Z) / TÖ": "Net Profit or Loss / Total Equity",
-      "İTTA/TA": "Receivables / Total Assets",
-      "İTTA / TA": "Receivables / Total Assets",
-      "İTTB/TB": "Receivables / Total Liabilities",
-      "İTTB / TB": "Receivables / Total Liabilities",
+      "İTTA/TA": "Related-Party Receivables / Trade Receivables",
+      "İTTA / TA": "Related-Party Receivables / Trade Receivables",
+      "İTTB/TB": "Related-Party Payables / Trade Payables",
+      "İTTB / TB": "Related-Party Payables / Trade Payables",
       "MDV/TÖ": "Fixed Assets / Total Equity",
       "MDV / TÖ": "Fixed Assets / Total Equity",
-      "H/TA": "Revenue / Total Assets",
+      "H/TA": "Revenue / Trade Receivables",
       "H/MDV": "Revenue / Fixed Assets",
-      "SFVÖK-EFK/MDV": "EBITDA before Financing Expenses / Fixed Assets",
-      "SFVÖK-EFK/TV": "EBITDA before Financing Expenses / Total Assets",
+      "SFVÖK-EFK/MDV": "Profit Before Tax minus Operating Profit / Fixed Assets",
+      "SFVÖK-EFK/TV": "Profit Before Tax minus Operating Profit / Total Assets",
       "DK(Z)/MDV": "Net Profit or Loss / Fixed Assets",
-      "EFK/H": "Financing Expenses / Revenue",
-      "EFDG/H": "Financing Expense-Like Costs / Revenue",
-      "SFVÖK/EFK": "EBITDA / Financing Expenses",
-      "EFK/TV": "Financing Expenses / Total Assets",
-      "DK(Z)/TK": "Net Profit or Loss / Total Liabilities",
-      "NetDönKar*/MDV*": "Adjusted Net Profit / Adjusted Fixed Assets",
-      "SFDK(Z)/TÖ": "Adjusted Net Profit or Loss / Total Equity",
+      "EFK/H": "Operating Profit / Revenue",
+      "EFDG/H": "Other Operating Expenses / Revenue",
+      "SFVÖK/EFK": "Profit Before Tax / Operating Profit",
+      "EFK/TV": "Operating Profit / Total Assets",
+      "DK(Z)/TK": "Net Profit or Loss / Total Resources",
+      "NetDönKar*/MDV*": "Change in Net Profit / Change in Fixed Assets",
+      "SFDK(Z)/TÖ": "Continuing Operations Profit / Total Equity",
       "FAVÖK/T.DuranV": "EBITDA / Total Non-Current Assets",
     };
 
@@ -838,19 +927,77 @@ function SemiAgentic({ language = "tr" }) {
     if (language !== "en" || !textValue) return textValue;
 
     let translated = textValue;
-    translated = translated.replace("değişkeni redundancy açısından incelenebilir.", "variable may be reviewed in terms of redundancy.");
-    translated = translated.replace("değişkeni özellik tekrarına yol açabilir.", "variable may cause feature redundancy.");
+
+    translated = translated.replace(
+      "değişkeni redundancy açısından incelenebilir.",
+      "variable may be reviewed in terms of redundancy."
+    );
+    translated = translated.replace(
+      "değişkeni özellik tekrarına yol açabilir.",
+      "variable may cause feature redundancy."
+    );
 
     return translateRatioName(translated);
   };
 
-  const weakFeatures = featureReport
-    ? (featureReport.weakFeatures || []).slice(0, 10)
-    : [];
+  const translateReportText = (textValue) => {
+    if (language !== "en" || !textValue) return textValue;
 
-  const redundantPairs = featureReport
-    ? (featureReport.redundantPairs || []).slice(0, 10)
-    : [];
+    let translated = textValue;
+
+    translated = translated.replaceAll(
+      "Sınıf dağılımı modelleme öncesinde kontrol edilmelidir.",
+      "Class distribution should be checked before modeling."
+    );
+    translated = translated.replaceAll(
+      "Eksik değer bulunması durumunda uygun imputasyon stratejisi belirlenmelidir.",
+      "If missing values are present, an appropriate imputation strategy should be determined."
+    );
+    translated = translated.replaceAll(
+      "Aykırı değerler IQR tabanlı sınırlandırma yöntemiyle değerlendirilebilir.",
+      "Outliers may be evaluated using an IQR-based capping method."
+    );
+    translated = translated.replaceAll(
+      "Yüksek korelasyonlu değişkenler özellik tekrarları açısından incelenmelidir.",
+      "Highly correlated variables should be reviewed in terms of feature redundancy."
+    );
+
+    translated = translated.replaceAll(
+      "Correlation FS, RFE ve mRMR-inspired yöntemleri ayrı ayrı değerlendirilmiştir.",
+      "Correlation FS, RFE, and mRMR-inspired methods were evaluated separately."
+    );
+    translated = translated.replaceAll(
+      "Nihai yöntem olarak correlation-based feature selection önerilmiştir; çünkü tezde kullanılan hibrit stacking mimarisiyle daha yorumlanabilir ve daha kararlı bir yapı sunmaktadır.",
+      "Correlation-based feature selection is recommended as the final method because it provides a more interpretable and stable structure for the hybrid stacking architecture used in the thesis."
+    );
+    translated = translated.replaceAll(
+      "RFE modeli bağımlı bir seçim mekanizması sunduğu için destekleyici karşılaştırma yöntemi olarak değerlendirilmiştir.",
+      "RFE was evaluated as a supporting comparison method because it provides a model-dependent selection mechanism."
+    );
+    translated = translated.replaceAll(
+      "mRMR-inspired yaklaşım, hedef değişken ilişkisini korurken redundant değişkenleri azaltmaya yönelik tamamlayıcı bir analiz sağlamaktadır.",
+      "The mRMR-inspired approach provides a complementary analysis aimed at reducing redundant variables while preserving target-variable relevance."
+    );
+    translated = translated.replaceAll(
+      "Consensus feature listesi, birden fazla yöntem tarafından seçilen değişkenleri göstererek modelleme öncesi karar desteği sağlar.",
+      "The consensus feature list supports pre-modeling decisions by showing variables selected by multiple methods."
+    );
+
+    translated = translated.replaceAll("NDK / Ö", "Net Profit / Equity");
+    translated = translated.replaceAll("NDK / TK", "Net Profit / Total Resources");
+    translated = translated.replaceAll("Asit Test Oran", "Acid-Test Ratio");
+    translated = translated.replaceAll("H / Ö", "Revenue / Equity");
+    translated = translated.replaceAll("NFB / Ö", "Net Financial Debt / Equity");
+    translated = translated.replaceAll("TK / Ö", "Total Assets / Equity");
+    translated = translated.replaceAll("KVB / Ö", "Short-Term Liabilities / Equity");
+    translated = translated.replaceAll("VÖK / H", "Profit Before Tax / Revenue");
+    translated = translated.replaceAll("Cari Oran", "Current Ratio");
+    translated = translated.replaceAll("N / KVB", "Cash / Short-Term Liabilities");
+    translated = translated.replaceAll("H / TV", "Revenue / Total Assets");
+    translated = translated.replaceAll("TB / Ö", "Total Liabilities / Equity");
+
+    return translateRatioName(translated);
+  };
 
   return (
     <div className="semi-agentic-page">
@@ -905,13 +1052,18 @@ function SemiAgentic({ language = "tr" }) {
                 type="button"
                 className="secondary-button"
                 onClick={handleDownloadAgenticReport}
-                disabled={!previewData && !analystReport && !featureReport && !optimizerReport && !xaiReport}
+                disabled={
+                  !previewData &&
+                  !analystReport &&
+                  !featureReport &&
+                  !optimizerReport &&
+                  !xaiReport
+                }
               >
                 {t.downloadReport}
               </button>
             </div>
           )}
-
 
           {currentStage === 0 && (
             <>
@@ -937,7 +1089,11 @@ function SemiAgentic({ language = "tr" }) {
                   {previewLoading ? t.previewLoading : t.previewButton}
                 </button>
 
-                <button type="button" className="secondary-button" onClick={handleReset}>
+                <button
+                  type="button"
+                  className="secondary-button"
+                  onClick={handleReset}
+                >
                   {t.resetButton}
                 </button>
               </div>
@@ -957,7 +1113,11 @@ function SemiAgentic({ language = "tr" }) {
                     {analystLoading ? t.analystLoading : t.runAnalyst}
                   </button>
 
-                  <button type="button" className="secondary-button" onClick={handleReset}>
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    onClick={handleReset}
+                  >
                     {t.resetButton}
                   </button>
                 </div>
@@ -980,11 +1140,7 @@ function SemiAgentic({ language = "tr" }) {
 
               {!featureReport && (
                 <ReportSection title={t.featureSelectorTitle}>
-                  <p>
-                    {language === "tr"
-                      ? "Bu aşamada Correlation FS, RFE ve mRMR-inspired özellik seçimi yöntemleri ayrı ayrı çalıştırılacak; ardından yöntem karşılaştırması ve önerilen nihai strateji üretilecektir."
-                      : "At this stage, Correlation FS, RFE, and mRMR-inspired feature selection methods will be executed separately; then method comparison and the recommended final strategy will be generated."}
-                  </p>
+                  <p>{t.featureSelectorIntro}</p>
 
                   <div className="agent-action-row analyst-action-row">
                     <button
@@ -993,10 +1149,16 @@ function SemiAgentic({ language = "tr" }) {
                       onClick={handleRunFeatureSelector}
                       disabled={featureLoading}
                     >
-                      {featureLoading ? t.featureSelectorLoading : t.runFeatureSelector}
+                      {featureLoading
+                        ? t.featureSelectorLoading
+                        : t.runFeatureSelector}
                     </button>
 
-                    <button type="button" className="secondary-button" onClick={handleReset}>
+                    <button
+                      type="button"
+                      className="secondary-button"
+                      onClick={handleReset}
+                    >
                       {t.resetButton}
                     </button>
                   </div>
@@ -1035,7 +1197,9 @@ function SemiAgentic({ language = "tr" }) {
                         <div className="pro-metric-icon">▥</div>
                         <div>
                           <span>{t.totalNumericFeatures}</span>
-                          <strong>{featureReport.totalNumericFeatures ?? "-"}</strong>
+                          <strong>
+                            {featureReport.totalNumericFeatures ?? "-"}
+                          </strong>
                         </div>
                       </div>
                     </div>
@@ -1058,16 +1222,18 @@ function SemiAgentic({ language = "tr" }) {
                         </thead>
 
                         <tbody>
-                          {(featureReport.methodComparison || []).map((item) => (
-                            <tr key={item.method}>
-                              <td>{item.method}</td>
-                              <td>{item.selectedFeatureCount}</td>
-                              <td>{item.interpretability}</td>
-                              <td>{item.redundancyControl}</td>
-                              <td>{item.stability}</td>
-                              <td>{item.thesisCompatibility}</td>
-                            </tr>
-                          ))}
+                          {(featureReport.methodComparison || []).map(
+                            (item) => (
+                              <tr key={item.method}>
+                                <td>{item.method}</td>
+                                <td>{item.selectedFeatureCount}</td>
+                                <td>{item.interpretability}</td>
+                                <td>{item.redundancyControl}</td>
+                                <td>{item.stability}</td>
+                                <td>{item.thesisCompatibility}</td>
+                              </tr>
+                            )
+                          )}
                         </tbody>
                       </table>
                     </div>
@@ -1076,32 +1242,43 @@ function SemiAgentic({ language = "tr" }) {
                   <div className="pro-report-grid">
                     <ReportSection title={t.correlationFS}>
                       <div className="agent-column-grid">
-                        {(featureReport.correlationFS?.selectedFeatures || []).map((feature) => (
-                          <span key={feature}>{translateRatioName(feature)}</span>
-                        ))}
+                        {(featureReport.correlationFS?.selectedFeatures || []).map(
+                          (feature) => (
+                            <span key={feature}>
+                              {translateRatioName(feature)}
+                            </span>
+                          )
+                        )}
                       </div>
                     </ReportSection>
 
                     <ReportSection title={t.rfeFS}>
                       <div className="agent-column-grid">
-                        {(featureReport.rfeFS?.selectedFeatures || []).map((feature) => (
-                          <span key={feature}>{translateRatioName(feature)}</span>
-                        ))}
+                        {(featureReport.rfeFS?.selectedFeatures || []).map(
+                          (feature) => (
+                            <span key={feature}>
+                              {translateRatioName(feature)}
+                            </span>
+                          )
+                        )}
                       </div>
                     </ReportSection>
                   </div>
 
                   <ReportSection title={t.mrmrFS}>
                     <div className="agent-column-grid">
-                      {(featureReport.mrmrFS?.selectedFeatures || []).map((feature) => (
-                        <span key={feature}>{translateRatioName(feature)}</span>
-                      ))}
+                      {(featureReport.mrmrFS?.selectedFeatures || []).map(
+                        (feature) => (
+                          <span key={feature}>{translateRatioName(feature)}</span>
+                        )
+                      )}
                     </div>
                   </ReportSection>
 
                   <ReportSection title={t.consensusSelectedFeatures}>
                     <div className="agent-column-grid">
-                      {(featureReport.consensusSelectedFeatures || []).length > 0 ? (
+                      {(featureReport.consensusSelectedFeatures || []).length >
+                      0 ? (
                         featureReport.consensusSelectedFeatures.map((feature) => (
                           <span key={feature}>{translateRatioName(feature)}</span>
                         ))
@@ -1183,7 +1360,7 @@ function SemiAgentic({ language = "tr" }) {
                               <tr key={item.feature}>
                                 <td>{translateRatioName(item.feature)}</td>
                                 <td>{item.rank}</td>
-                                <td>{item.selected ? "Yes" : "No"}</td>
+                                <td>{item.selected ? t.yes : t.no}</td>
                               </tr>
                             ))}
                         </tbody>
@@ -1205,14 +1382,18 @@ function SemiAgentic({ language = "tr" }) {
 
                         <tbody>
                           {(featureReport.redundantPairs || []).length > 0 ? (
-                            featureReport.redundantPairs.slice(0, 10).map((item, index) => (
-                              <tr key={`${item.featureA}-${item.featureB}-${index}`}>
-                                <td>{translateRatioName(item.featureA)}</td>
-                                <td>{translateRatioName(item.featureB)}</td>
-                                <td>{formatNumber(item.correlation)}</td>
-                                <td>{translateSuggestionText(item.suggestion)}</td>
-                              </tr>
-                            ))
+                            featureReport.redundantPairs
+                              .slice(0, 10)
+                              .map((item, index) => (
+                                <tr
+                                  key={`${item.featureA}-${item.featureB}-${index}`}
+                                >
+                                  <td>{translateRatioName(item.featureA)}</td>
+                                  <td>{translateRatioName(item.featureB)}</td>
+                                  <td>{formatNumber(item.correlation)}</td>
+                                  <td>{translateReportText(translateSuggestionText(item.suggestion))}</td>
+                                </tr>
+                              ))
                           ) : (
                             <tr>
                               <td colSpan="4">-</td>
@@ -1237,24 +1418,18 @@ function SemiAgentic({ language = "tr" }) {
 
                   <ReportSection title={t.recommendations}>
                     <div className="agent-note-box">
-                      {(featureReport.recommendations || []).map((item, index) => (
-                        <p key={index}>• {item}</p>
-                      ))}
+                      {(featureReport.recommendations || []).map(
+                        (item, index) => (
+                          <p key={index}>• {translateReportText(item)}</p>
+                        )
+                      )}
                     </div>
                   </ReportSection>
 
                   <div className="agent-next-step-box">
                     <div>
-                      <h4>
-                        {language === "tr"
-                          ? "Özellik Seçimi Aşamasını Onayla"
-                          : "Approve Feature Selection Stage"}
-                      </h4>
-                      <p>
-                        {language === "tr"
-                          ? "Özellik seçimi raporunu kontrol ettikten sonra Model Optimizer aşamasına geçebilirsiniz."
-                          : "After reviewing the Feature Selector report, you can proceed to the Model Optimizer stage."}
-                      </p>
+                      <h4>{t.approveFeatureTitle}</h4>
+                      <p>{t.approveFeatureText}</p>
                     </div>
 
                     <button
@@ -1262,9 +1437,7 @@ function SemiAgentic({ language = "tr" }) {
                       className="primary-button"
                       onClick={() => setCurrentStage(3)}
                     >
-                      {language === "tr"
-                        ? "ONAYLA → MODEL OPTIMIZER"
-                        : "APPROVE → MODEL OPTIMIZER"}
+                      {t.approveFeatureButton}
                     </button>
                   </div>
                 </>
@@ -1296,10 +1469,16 @@ function SemiAgentic({ language = "tr" }) {
                       onClick={handleRunModelOptimizer}
                       disabled={optimizerLoading}
                     >
-                      {optimizerLoading ? t.modelOptimizerLoading : t.runModelOptimizer}
+                      {optimizerLoading
+                        ? t.modelOptimizerLoading
+                        : t.runModelOptimizer}
                     </button>
 
-                    <button type="button" className="secondary-button" onClick={handleReset}>
+                    <button
+                      type="button"
+                      className="secondary-button"
+                      onClick={handleReset}
+                    >
                       {t.resetButton}
                     </button>
                   </div>
@@ -1314,7 +1493,10 @@ function SemiAgentic({ language = "tr" }) {
                         <div className="pro-metric-icon">▣</div>
                         <div>
                           <span>{t.architectureName}</span>
-                          <strong>{optimizerReport.recommendedArchitecture?.name ?? "-"}</strong>
+                          <strong>
+                            {optimizerReport.recommendedArchitecture?.name ??
+                              "-"}
+                          </strong>
                         </div>
                       </div>
 
@@ -1322,7 +1504,10 @@ function SemiAgentic({ language = "tr" }) {
                         <div className="pro-metric-icon">⊙</div>
                         <div>
                           <span>{t.metaLearner}</span>
-                          <strong>{optimizerReport.recommendedArchitecture?.metaLearner ?? "-"}</strong>
+                          <strong>
+                            {optimizerReport.recommendedArchitecture
+                              ?.metaLearner ?? "-"}
+                          </strong>
                         </div>
                       </div>
 
@@ -1330,19 +1515,30 @@ function SemiAgentic({ language = "tr" }) {
                         <div className="pro-metric-icon">%</div>
                         <div>
                           <span>{t.optimizedThreshold}</span>
-                          <strong>{optimizerReport.thresholdOptimization?.optimizedThreshold ?? "-"}</strong>
+                          <strong>
+                            {optimizerReport.thresholdOptimization
+                              ?.optimizedThreshold ?? "-"}
+                          </strong>
                         </div>
                       </div>
                     </div>
 
                     <p>{optimizerReport.recommendedArchitecture?.calibration}</p>
-                    <p>{optimizerReport.recommendedArchitecture?.thresholdStrategy}</p>
+                    <p>
+                      {
+                        optimizerReport.recommendedArchitecture
+                          ?.thresholdStrategy
+                      }
+                    </p>
                   </ReportSection>
 
                   <div className="pro-report-grid">
                     <ReportSection title={t.preprocessing}>
                       <div className="agent-column-grid">
-                        {(optimizerReport.recommendedArchitecture?.preprocessing || []).map((item) => (
+                        {(
+                          optimizerReport.recommendedArchitecture
+                            ?.preprocessing || []
+                        ).map((item) => (
                           <span key={item}>{item}</span>
                         ))}
                       </div>
@@ -1350,7 +1546,10 @@ function SemiAgentic({ language = "tr" }) {
 
                     <ReportSection title={t.baseLearners}>
                       <div className="agent-column-grid">
-                        {(optimizerReport.recommendedArchitecture?.baseLearners || []).map((item) => (
+                        {(
+                          optimizerReport.recommendedArchitecture?.baseLearners ||
+                          []
+                        ).map((item) => (
                           <span key={item}>{item}</span>
                         ))}
                       </div>
@@ -1377,22 +1576,26 @@ function SemiAgentic({ language = "tr" }) {
 
                         <tbody>
                           {[
-                            optimizerReport.testSetPerformance?.baseHybridFixedThreshold,
-                            optimizerReport.testSetPerformance?.optimizedOOFStacking,
-                          ].filter(Boolean).map((item) => (
-                            <tr key={item.architecture}>
-                              <td>{item.architecture}</td>
-                              <td>{item.threshold}</td>
-                              <td>{formatNumber(item.accuracy)}</td>
-                              <td>{formatNumber(item.precisionWeighted)}</td>
-                              <td>{formatNumber(item.recallWeighted)}</td>
-                              <td>{formatNumber(item.f1Weighted)}</td>
-                              <td>{formatNumber(item.balancedAccuracy)}</td>
-                              <td>{formatNumber(item.appGear)}</td>
-                              <td>{formatNumber(item.fraudPrecision)}</td>
-                              <td>{formatNumber(item.fraudRecall)}</td>
-                            </tr>
-                          ))}
+                            optimizerReport.testSetPerformance
+                              ?.baseHybridFixedThreshold,
+                            optimizerReport.testSetPerformance
+                              ?.optimizedOOFStacking,
+                          ]
+                            .filter(Boolean)
+                            .map((item) => (
+                              <tr key={item.architecture}>
+                                <td>{item.architecture}</td>
+                                <td>{item.threshold}</td>
+                                <td>{formatNumber(item.accuracy)}</td>
+                                <td>{formatNumber(item.precisionWeighted)}</td>
+                                <td>{formatNumber(item.recallWeighted)}</td>
+                                <td>{formatNumber(item.f1Weighted)}</td>
+                                <td>{formatNumber(item.balancedAccuracy)}</td>
+                                <td>{formatNumber(item.appGear)}</td>
+                                <td>{formatNumber(item.fraudPrecision)}</td>
+                                <td>{formatNumber(item.fraudRecall)}</td>
+                              </tr>
+                            ))}
                         </tbody>
                       </table>
                     </div>
@@ -1412,14 +1615,16 @@ function SemiAgentic({ language = "tr" }) {
                           </tr>
                         </thead>
                         <tbody>
-                          {(optimizerReport.baselineModelComparison || []).map((item) => (
-                            <tr key={item.model}>
-                              <td>{item.model}</td>
-                              <td>{item.role}</td>
-                              <td>{item.strength}</td>
-                              <td>{item.limitation}</td>
-                            </tr>
-                          ))}
+                          {(optimizerReport.baselineModelComparison || []).map(
+                            (item) => (
+                              <tr key={item.model}>
+                                <td>{item.model}</td>
+                                <td>{item.role}</td>
+                                <td>{item.strength}</td>
+                                <td>{item.limitation}</td>
+                              </tr>
+                            )
+                          )}
                         </tbody>
                       </table>
                     </div>
@@ -1431,21 +1636,33 @@ function SemiAgentic({ language = "tr" }) {
                         <div className="pro-metric-icon">0.5</div>
                         <div>
                           <span>{t.defaultThreshold}</span>
-                          <strong>{optimizerReport.thresholdOptimization?.defaultThreshold}</strong>
+                          <strong>
+                            {
+                              optimizerReport.thresholdOptimization
+                                ?.defaultThreshold
+                            }
+                          </strong>
                         </div>
                       </div>
                       <div className="pro-metric-card">
                         <div className="pro-metric-icon">✓</div>
                         <div>
                           <span>{t.optimizedThreshold}</span>
-                          <strong>{optimizerReport.thresholdOptimization?.optimizedThreshold}</strong>
+                          <strong>
+                            {
+                              optimizerReport.thresholdOptimization
+                                ?.optimizedThreshold
+                            }
+                          </strong>
                         </div>
                       </div>
                       <div className="pro-metric-card">
                         <div className="pro-metric-icon">↔</div>
                         <div>
                           <span>{t.searchRange}</span>
-                          <strong>{optimizerReport.thresholdOptimization?.searchRange}</strong>
+                          <strong>
+                            {optimizerReport.thresholdOptimization?.searchRange}
+                          </strong>
                         </div>
                       </div>
                     </div>
@@ -1456,22 +1673,46 @@ function SemiAgentic({ language = "tr" }) {
                   <ReportSection title={t.classImbalanceStrategy}>
                     <p>{optimizerReport.classImbalanceStrategy?.diagnosis}</p>
                     <div className="agent-note-box">
-                      <p>• {optimizerReport.classImbalanceStrategy?.recommendation}</p>
+                      <p>
+                        •{" "}
+                        {
+                          optimizerReport.classImbalanceStrategy
+                            ?.recommendation
+                        }
+                      </p>
                     </div>
                   </ReportSection>
 
                   <ReportSection title={t.calibrationReliability}>
-                    <p><strong>{t.strategy}:</strong> {optimizerReport.calibrationReliability?.strategy}</p>
-                    <p><strong>{t.purpose}:</strong> {optimizerReport.calibrationReliability?.purpose}</p>
+                    <p>
+                      <strong>{t.strategy}:</strong>{" "}
+                      {optimizerReport.calibrationReliability?.strategy}
+                    </p>
+                    <p>
+                      <strong>{t.purpose}:</strong>{" "}
+                      {optimizerReport.calibrationReliability?.purpose}
+                    </p>
                     <p>{optimizerReport.calibrationReliability?.recommendation}</p>
                   </ReportSection>
 
                   <ReportSection title={t.hyperparameterStrategy}>
-                    <p><strong>{t.searchType}:</strong> {optimizerReport.hyperparameterStrategy?.searchType}</p>
-                    <p><strong>{t.metaLearner}:</strong> {optimizerReport.hyperparameterStrategy?.metaLearnerCandidate}</p>
+                    <p>
+                      <strong>{t.searchType}:</strong>{" "}
+                      {optimizerReport.hyperparameterStrategy?.searchType}
+                    </p>
+                    <p>
+                      <strong>{t.metaLearner}:</strong>{" "}
+                      {
+                        optimizerReport.hyperparameterStrategy
+                          ?.metaLearnerCandidate
+                      }
+                    </p>
 
                     <div className="agent-column-grid">
-                      {(optimizerReport.hyperparameterStrategy?.evaluatedParameters || []).map((item) => (
+                      {(
+                        optimizerReport.hyperparameterStrategy
+                          ?.evaluatedParameters || []
+                      ).map((item) => (
                         <span key={item}>{item}</span>
                       ))}
                     </div>
@@ -1481,15 +1722,19 @@ function SemiAgentic({ language = "tr" }) {
 
                   <ReportSection title={t.optimizerRecommendations}>
                     <div className="agent-note-box">
-                      {(optimizerReport.optimizerRecommendations || []).map((item, index) => (
-                        <p key={index}>• {item}</p>
-                      ))}
+                      {(optimizerReport.optimizerRecommendations || []).map(
+                        (item, index) => (
+                          <p key={index}>• {translateReportText(item)}</p>
+                        )
+                      )}
                     </div>
                   </ReportSection>
 
                   <ReportSection title={t.finalDecision}>
                     <div className="agent-column-grid">
-                      {(optimizerReport.finalDecision?.recommendedPipeline || []).map((item) => (
+                      {(
+                        optimizerReport.finalDecision?.recommendedPipeline || []
+                      ).map((item) => (
                         <span key={item}>{item}</span>
                       ))}
                     </div>
@@ -1499,16 +1744,8 @@ function SemiAgentic({ language = "tr" }) {
 
                   <div className="agent-next-step-box">
                     <div>
-                      <h4>
-                        {language === "tr"
-                          ? "Model Optimizer Aşamasını Onayla"
-                          : "Approve Model Optimizer Stage"}
-                      </h4>
-                      <p>
-                        {language === "tr"
-                          ? "Model optimizasyon raporunu kontrol ettikten sonra XAI / Explainability Agent aşamasına geçebilirsiniz."
-                          : "After reviewing the Model Optimizer report, you can proceed to the XAI / Explainability Agent stage."}
-                      </p>
+                      <h4>{t.approveOptimizerTitle}</h4>
+                      <p>{t.approveOptimizerText}</p>
                     </div>
 
                     <button
@@ -1516,9 +1753,7 @@ function SemiAgentic({ language = "tr" }) {
                       className="primary-button"
                       onClick={() => setCurrentStage(4)}
                     >
-                      {language === "tr"
-                        ? "ONAYLA → XAI AGENT"
-                        : "APPROVE → XAI AGENT"}
+                      {t.approveOptimizerButton}
                     </button>
                   </div>
                 </>
@@ -1526,9 +1761,15 @@ function SemiAgentic({ language = "tr" }) {
             </div>
           )}
 
-          {previewError && <div className="professional-alert error-alert">{previewError}</div>}
-          {analystError && <div className="professional-alert error-alert">{analystError}</div>}
-          {featureError && <div className="professional-alert error-alert">{featureError}</div>}
+          {previewError && (
+            <div className="professional-alert error-alert">{previewError}</div>
+          )}
+          {analystError && (
+            <div className="professional-alert error-alert">{analystError}</div>
+          )}
+          {featureError && (
+            <div className="professional-alert error-alert">{featureError}</div>
+          )}
 
           {currentStage === 4 && (
             <div className="agent-report-card">
@@ -1557,7 +1798,11 @@ function SemiAgentic({ language = "tr" }) {
                       {xaiLoading ? t.xaiLoading : t.runXai}
                     </button>
 
-                    <button type="button" className="secondary-button" onClick={handleReset}>
+                    <button
+                      type="button"
+                      className="secondary-button"
+                      onClick={handleReset}
+                    >
                       {t.resetButton}
                     </button>
                   </div>
@@ -1568,7 +1813,9 @@ function SemiAgentic({ language = "tr" }) {
                 <>
                   <ReportSection title={t.explainabilityMethod}>
                     <div className="agent-note-box">
-                      <p><strong>{xaiReport.explainabilityMethod?.name}</strong></p>
+                      <p>
+                        <strong>{xaiReport.explainabilityMethod?.name}</strong>
+                      </p>
                       <p>{xaiReport.explainabilityMethod?.purpose}</p>
                       <p>{xaiReport.explainabilityMethod?.scope}</p>
                     </div>
@@ -1588,15 +1835,17 @@ function SemiAgentic({ language = "tr" }) {
                         </thead>
 
                         <tbody>
-                          {(xaiReport.topInfluentialFeatures || []).map((item) => (
-                            <tr key={item.feature}>
-                              <td>{translateRatioName(item.feature)}</td>
-                              <td>{formatNumber(item.importanceProxy)}</td>
-                              <td>{formatNumber(item.correlation)}</td>
-                              <td>{item.direction}</td>
-                              <td>{item.interpretation}</td>
-                            </tr>
-                          ))}
+                          {(xaiReport.topInfluentialFeatures || []).map(
+                            (item) => (
+                              <tr key={item.feature}>
+                                <td>{translateReportText(translateRatioName(item.feature))}</td>
+                                <td>{formatNumber(item.importanceProxy)}</td>
+                                <td>{formatNumber(item.correlation)}</td>
+                                <td>{item.direction}</td>
+                                <td>{translateReportText(item.interpretation)}</td>
+                              </tr>
+                            )
+                          )}
                         </tbody>
                       </table>
                     </div>
@@ -1620,9 +1869,11 @@ function SemiAgentic({ language = "tr" }) {
 
                   <ReportSection title={t.xaiRecommendations}>
                     <div className="agent-note-box">
-                      {(xaiReport.xaiRecommendations || []).map((item, index) => (
-                        <p key={index}>• {item}</p>
-                      ))}
+                      {(xaiReport.xaiRecommendations || []).map(
+                        (item, index) => (
+                          <p key={index}>• {translateReportText(item)}</p>
+                        )
+                      )}
                     </div>
                   </ReportSection>
 
@@ -1661,8 +1912,14 @@ function SemiAgentic({ language = "tr" }) {
             </div>
           )}
 
-          {optimizerError && <div className="professional-alert error-alert">{optimizerError}</div>}
-          {xaiError && <div className="professional-alert error-alert">{xaiError}</div>}
+          {optimizerError && (
+            <div className="professional-alert error-alert">
+              {optimizerError}
+            </div>
+          )}
+          {xaiError && (
+            <div className="professional-alert error-alert">{xaiError}</div>
+          )}
 
           {currentStage === 0 && previewData && (
             <div className="agent-preview-report pro-preview-report">
@@ -1691,13 +1948,15 @@ function SemiAgentic({ language = "tr" }) {
                       </tr>
                     </thead>
                     <tbody>
-                      {Object.entries(previewData.classDistribution || {}).map(([key, value]) => (
-                        <tr key={key}>
-                          <td>{key}</td>
-                          <td>{getClassDescription(key)}</td>
-                          <td>{value}</td>
-                        </tr>
-                      ))}
+                      {Object.entries(previewData.classDistribution || {}).map(
+                        ([key, value]) => (
+                          <tr key={key}>
+                            <td>{key}</td>
+                            <td>{getClassDescription(key)}</td>
+                            <td>{value}</td>
+                          </tr>
+                        )
+                      )}
                     </tbody>
                   </table>
                 </ReportSection>
@@ -1770,7 +2029,9 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="pro-metric-icon">▦</div>
                     <div>
                       <span>{t.rowCount}</span>
-                      <strong>{analystReport.datasetOverview?.rowCount ?? "-"}</strong>
+                      <strong>
+                        {analystReport.datasetOverview?.rowCount ?? "-"}
+                      </strong>
                     </div>
                   </div>
 
@@ -1778,7 +2039,9 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="pro-metric-icon">▥</div>
                     <div>
                       <span>{t.columnCount}</span>
-                      <strong>{analystReport.datasetOverview?.columnCount ?? "-"}</strong>
+                      <strong>
+                        {analystReport.datasetOverview?.columnCount ?? "-"}
+                      </strong>
                     </div>
                   </div>
 
@@ -1786,7 +2049,10 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="pro-metric-icon">#</div>
                     <div>
                       <span>{t.numericColumnCount}</span>
-                      <strong>{analystReport.datasetOverview?.numericColumnCount ?? "-"}</strong>
+                      <strong>
+                        {analystReport.datasetOverview?.numericColumnCount ??
+                          "-"}
+                      </strong>
                     </div>
                   </div>
 
@@ -1794,7 +2060,10 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="pro-metric-icon">−</div>
                     <div>
                       <span>{t.totalMissingValues}</span>
-                      <strong>{analystReport.datasetOverview?.totalMissingValues ?? "-"}</strong>
+                      <strong>
+                        {analystReport.datasetOverview?.totalMissingValues ??
+                          "-"}
+                      </strong>
                     </div>
                   </div>
                 </div>
@@ -1810,22 +2079,25 @@ function SemiAgentic({ language = "tr" }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(analystReport.classDistribution || {}).map(([key, value]) => (
-                      <tr key={key}>
-                        <td>{key}</td>
-                        <td>{getClassDescription(key)}</td>
-                        <td>{value}</td>
-                      </tr>
-                    ))}
+                    {Object.entries(analystReport.classDistribution || {}).map(
+                      ([key, value]) => (
+                        <tr key={key}>
+                          <td>{key}</td>
+                          <td>{getClassDescription(key)}</td>
+                          <td>{value}</td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </table>
               </ReportSection>
 
               <ReportSection title={t.missingValueAnalysis}>
                 <p>
-                  {language === "tr"
-                    ? `Toplam eksik değer sayısı: ${analystReport.datasetOverview?.totalMissingValues ?? "-"}. Eksik değer yapısı modelleme öncesinde kontrol edilmelidir.`
-                    : `Total missing values: ${analystReport.datasetOverview?.totalMissingValues ?? "-"}. Missing value structure should be checked before modeling.`}
+                  {t.missingValueSentence.replace(
+                    "{count}",
+                    analystReport.datasetOverview?.totalMissingValues ?? "-"
+                  )}
                 </p>
               </ReportSection>
 
@@ -1920,23 +2192,15 @@ function SemiAgentic({ language = "tr" }) {
               <ReportSection title={t.preprocessingRecommendations}>
                 <div className="agent-note-box">
                   {(analystReport.recommendations || []).map((item, index) => (
-                    <p key={index}>• {item}</p>
+                    <p key={index}>• {translateReportText(item)}</p>
                   ))}
                 </div>
               </ReportSection>
 
               <div className="agent-next-step-box">
                 <div>
-                  <h4>
-                    {language === "tr"
-                      ? "Veri Analisti Aşamasını Onayla"
-                      : "Approve Data Analyst Stage"}
-                  </h4>
-                  <p>
-                    {language === "tr"
-                      ? "Veri analisti raporunu kontrol ettikten sonra özellik seçimi aşamasına geçebilirsiniz."
-                      : "After reviewing the Data Analyst report, you can proceed to the feature selection stage."}
-                  </p>
+                  <h4>{t.approveDataAnalystTitle}</h4>
+                  <p>{t.approveDataAnalystText}</p>
                 </div>
 
                 <button
@@ -1944,9 +2208,7 @@ function SemiAgentic({ language = "tr" }) {
                   className="primary-button"
                   onClick={() => setCurrentStage(2)}
                 >
-                  {language === "tr"
-                    ? "ONAYLA → ÖZELLİK SEÇİCİ"
-                    : "APPROVE → FEATURE SELECTOR"}
+                  {t.approveDataAnalystButton}
                 </button>
               </div>
             </div>

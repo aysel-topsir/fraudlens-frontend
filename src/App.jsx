@@ -5,6 +5,9 @@ import "./App.css";
 const translations = {
   tr: {
     appTitle: "HİLE TESPİT SİSTEMİ",
+    brandTitle: "HİLE ANALİTİĞİ",
+    brandSubtitle: "KARAR PLATFORMU",
+    languageLabel: "Dil Seçimi",
     welcomeTitle: "👋 Hoş Geldiniz!",
     welcomeText:
       "Bu modül, finansal verilerde hile tespiti için makine öğrenmesi modellerini kullanır ve olası riskleri analiz ederek karar süreçlerini destekler.",
@@ -60,6 +63,7 @@ const translations = {
     resultDescription:
       "Bu ekran, girilen tekil şirket verileri üzerinden hesaplanan finansal rasyoları, hibrit model tahminini ve seçilen modelin test veri seti performansını rapor formatında sunar.",
     usedModel: "Kullanılan Model",
+    model: "Model",
     ratioCount: "Hesaplanan Rasyo Sayısı",
     analysisStatus: "Analiz Durumu",
     predictionCalculating: "Tahmin hesaplanıyor",
@@ -99,10 +103,18 @@ const translations = {
     value: "Değer",
     singleCompanyPrediction: "Tekil Şirket Tahmini",
     riskLevel: "Risk Seviyesi",
+    accuracy: "Doğruluk",
+    precision: "Kesinlik",
+    recall: "Duyarlılık",
+    f1Score: "F1-Skoru",
+    appGear: "AppGear",
   },
 
   en: {
     appTitle: "FRAUD DETECTION SYSTEM",
+    brandTitle: "FRAUD ANALYTICS",
+    brandSubtitle: "DECISION PLATFORM",
+    languageLabel: "Language",
     welcomeTitle: "👋 Welcome!",
     welcomeText:
       "This module uses machine learning models to detect fraud in financial data and supports decision-making processes by analyzing potential risks.",
@@ -158,6 +170,7 @@ const translations = {
     resultDescription:
       "This screen presents the financial ratios calculated from the single-company input, the hybrid model prediction, and the selected model’s test-set performance in report format.",
     usedModel: "Model Used",
+    model: "Model",
     ratioCount: "Number of Calculated Ratios",
     analysisStatus: "Analysis Status",
     predictionCalculating: "Prediction is being calculated",
@@ -197,6 +210,11 @@ const translations = {
     value: "Value",
     singleCompanyPrediction: "Single Company Prediction",
     riskLevel: "Risk Level",
+    accuracy: "Accuracy",
+    precision: "Precision",
+    recall: "Recall",
+    f1Score: "F1-Score",
+    appGear: "AppGear",
   },
 };
 
@@ -928,7 +946,7 @@ function App() {
 
     rows.push([t.generalInfo, t.item, t.value]);
     rows.push([t.generalInfo, t.fraudType, getFraudDisplayName(selectedFraud)]);
-    rows.push([t.generalInfo, "Model", selectedFraud.modelName]);
+    rows.push([t.generalInfo, t.model, selectedFraud.modelName]);
     rows.push([t.generalInfo, t.status, t.ratiosCalculated]);
 
     if (backendResult) {
@@ -954,27 +972,27 @@ function App() {
       ]);
       rows.push([
         t.testPerformance,
-        "Accuracy",
+        t.accuracy,
         backendResult.metrics?.accuracy ?? "",
       ]);
       rows.push([
         t.testPerformance,
-        "Precision",
+        t.precision,
         backendResult.metrics?.precision ?? "",
       ]);
       rows.push([
         t.testPerformance,
-        "Recall",
+        t.recall,
         backendResult.metrics?.recall ?? "",
       ]);
       rows.push([
         t.testPerformance,
-        "F1-Score",
+        t.f1Score,
         backendResult.metrics?.f1_score ?? "",
       ]);
       rows.push([
         t.testPerformance,
-        "AppGear",
+        t.appGear,
         backendResult.metrics?.appgear ?? "",
       ]);
     }
@@ -1043,13 +1061,13 @@ function App() {
           <div className="brand-icon">🛡️</div>
 
           <div>
-            <h2>FRAUD ANALYTICS</h2>
-            <p>{language === "tr" ? "KARAR PLATFORMU" : "DECISION PLATFORM"}</p>
+            <h2>{t.brandTitle}</h2>
+            <p>{t.brandSubtitle}</p>
           </div>
         </div>
 
         <div className="language-switch-card">
-          <span>{language === "tr" ? "Dil Seçimi" : "Language"}</span>
+          <span>{t.languageLabel}</span>
 
           <div className="language-toggle">
             <button
@@ -1076,22 +1094,24 @@ function App() {
         </div>
 
         <div className="side-menu">
-  <button
-    type="button"
-    className={`side-button ${activeModule === "fraud" ? "active" : ""}`}
-    onClick={() => setActiveModule("fraud")}
-  >
-    {t.fraudDetectionSystem}
-  </button>
+          <button
+            type="button"
+            className={`side-button ${activeModule === "fraud" ? "active" : ""}`}
+            onClick={() => setActiveModule("fraud")}
+          >
+            {t.fraudDetectionSystem}
+          </button>
 
-  <button
-    type="button"
-    className={`side-button ${activeModule === "semi-agentic" ? "active" : ""}`}
-    onClick={() => setActiveModule("semi-agentic")}
-  >
-    {t.semiAgenticSystem}
-  </button>
-</div>
+          <button
+            type="button"
+            className={`side-button ${
+              activeModule === "semi-agentic" ? "active" : ""
+            }`}
+            onClick={() => setActiveModule("semi-agentic")}
+          >
+            {t.semiAgenticSystem}
+          </button>
+        </div>
 
         <div className="small-info-card">
           <h4>{t.infoTitle}</h4>
@@ -1100,495 +1120,517 @@ function App() {
       </aside>
 
       <main className="main">
-  {activeModule === "semi-agentic" ? (
-    <SemiAgentic language={language} />
-  ) : (
-    <>
-      <header className="header">
-        <h1>{t.appTitle}</h1>
-      </header>
+        {activeModule === "semi-agentic" ? (
+          <SemiAgentic language={language} />
+        ) : (
+          <>
+            <header className="header">
+              <h1>{t.appTitle}</h1>
+            </header>
 
-        <section className="stepper four-stepper">
-          <div
-            className={`step ${
-              currentStep === 1 ? "active" : currentStep > 1 ? "completed" : ""
-            }`}
-          >
-            <span>{currentStep > 1 ? "✓" : "1"}</span>
-            <p>{t.modelSelection}</p>
-          </div>
-
-          <div className="step-separator">›</div>
-
-          <div
-            className={`step ${
-              currentStep === 2 ? "active" : currentStep > 2 ? "completed" : ""
-            }`}
-          >
-            <span>{currentStep > 2 ? "✓" : "2"}</span>
-            <p>{t.dataEntry}</p>
-          </div>
-
-          <div className="step-separator">›</div>
-
-          <div
-            className={`step ${
-              currentStep === 3 ? "active" : currentStep > 3 ? "completed" : ""
-            }`}
-          >
-            <span>{currentStep > 3 ? "✓" : "3"}</span>
-            <p>{t.ratioCalculation}</p>
-          </div>
-
-          <div className="step-separator">›</div>
-
-          <div className={`step ${currentStep === 4 ? "active" : ""}`}>
-            <span>4</span>
-            <p>{t.resultScreen}</p>
-          </div>
-        </section>
-
-        {currentStep === 1 && (
-          <section className="full-page-section">
-            <div className="top-info-grid horizontal-info-grid">
-              <div className="mini-info-card">
-                <div className="mini-icon">📌</div>
-                <div className="mini-info-text">
-                  <h4>{t.fraudDescription}</h4>
-                  <p>{selectedFraud.description[language]}</p>
-                </div>
+            <section className="stepper four-stepper">
+              <div
+                className={`step ${
+                  currentStep === 1
+                    ? "active"
+                    : currentStep > 1
+                    ? "completed"
+                    : ""
+                }`}
+              >
+                <span>{currentStep > 1 ? "✓" : "1"}</span>
+                <p>{t.modelSelection}</p>
               </div>
 
-              <div className="mini-info-card">
-                <div className="mini-icon">⚙</div>
-                <div className="mini-info-text">
-                  <h4>{t.automaticModelAssignment}</h4>
-                  <p>{selectedFraud.modelExplanation[language]}</p>
-                </div>
+              <div className="step-separator">›</div>
+
+              <div
+                className={`step ${
+                  currentStep === 2
+                    ? "active"
+                    : currentStep > 2
+                    ? "completed"
+                    : ""
+                }`}
+              >
+                <span>{currentStep > 2 ? "✓" : "2"}</span>
+                <p>{t.dataEntry}</p>
               </div>
 
-              <div className="mini-info-card">
-                <div className="mini-icon">✅</div>
-                <div className="mini-info-text">
-                  <h4>{t.nextStep}</h4>
-                  <p>{t.nextStepText}</p>
-                </div>
+              <div className="step-separator">›</div>
+
+              <div
+                className={`step ${
+                  currentStep === 3
+                    ? "active"
+                    : currentStep > 3
+                    ? "completed"
+                    : ""
+                }`}
+              >
+                <span>{currentStep > 3 ? "✓" : "3"}</span>
+                <p>{t.ratioCalculation}</p>
               </div>
-            </div>
 
-            <div className="card full-width-card">
-              <h2>{t.modelSelection}</h2>
+              <div className="step-separator">›</div>
 
-              <p className="description">{t.modelSelectionDescription}</p>
+              <div className={`step ${currentStep === 4 ? "active" : ""}`}>
+                <span>4</span>
+                <p>{t.resultScreen}</p>
+              </div>
+            </section>
 
-              <div className="fraud-choice-area">
-                <h3>{t.fraudType}</h3>
+            {currentStep === 1 && (
+              <section className="full-page-section">
+                <div className="top-info-grid horizontal-info-grid">
+                  <div className="mini-info-card">
+                    <div className="mini-icon">📌</div>
+                    <div className="mini-info-text">
+                      <h4>{t.fraudDescription}</h4>
+                      <p>{selectedFraud.description[language]}</p>
+                    </div>
+                  </div>
 
-                <div className="fraud-choice-grid">
-                  {Object.entries(fraudOptions).map(([key, option]) => (
+                  <div className="mini-info-card">
+                    <div className="mini-icon">⚙</div>
+                    <div className="mini-info-text">
+                      <h4>{t.automaticModelAssignment}</h4>
+                      <p>{selectedFraud.modelExplanation[language]}</p>
+                    </div>
+                  </div>
+
+                  <div className="mini-info-card">
+                    <div className="mini-icon">✅</div>
+                    <div className="mini-info-text">
+                      <h4>{t.nextStep}</h4>
+                      <p>{t.nextStepText}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card full-width-card">
+                  <h2>{t.modelSelection}</h2>
+
+                  <p className="description">{t.modelSelectionDescription}</p>
+
+                  <div className="fraud-choice-area">
+                    <h3>{t.fraudType}</h3>
+
+                    <div className="fraud-choice-grid">
+                      {Object.entries(fraudOptions).map(([key, option]) => (
+                        <button
+                          key={key}
+                          type="button"
+                          className={`fraud-choice-card ${
+                            fraudType === key ? "selected" : ""
+                          }`}
+                          onClick={() => handleFraudTypeChange(key)}
+                        >
+                          <div className="fraud-choice-main">
+                            <span className="fraud-choice-check">
+                              {fraudType === key ? "✓" : ""}
+                            </span>
+
+                            <div>
+                              <strong>{option.label[language]}</strong>
+                              <p>{option.fullName[language]}</p>
+                            </div>
+                          </div>
+
+                          <div className="fraud-choice-model">
+                            <span>{t.assignedModel}</span>
+                            <b>{option.modelName}</b>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="selected-model-box">
+                    <span>{t.automaticModelSelection}</span>
+                    <strong>{selectedFraud.modelName}</strong>
+                  </div>
+
+                  <button className="primary-button" onClick={goToDataEntry}>
+                    {t.enterData} <span>→</span>
+                  </button>
+                </div>
+              </section>
+            )}
+
+            {currentStep === 2 && (
+              <section className="full-page-section">
+                <div className="top-info-grid horizontal-info-grid">
+                  <div className="mini-info-card">
+                    <div className="mini-icon">📝</div>
+                    <div className="mini-info-text">
+                      <h4>{t.financialDataEntry}</h4>
+                      <p>{t.financialDataEntryText}</p>
+                    </div>
+                  </div>
+
+                  <div className="mini-info-card">
+                    <div className="mini-icon">123</div>
+                    <div className="mini-info-text">
+                      <h4>{t.numericFormat}</h4>
+                      <p>{t.numericFormatText}</p>
+                    </div>
+                  </div>
+
+                  <div className="mini-info-card">
+                    <div className="mini-icon">🎯</div>
+                    <div className="mini-info-text">
+                      <h4>{t.ratioCalculation}</h4>
+                      <p>{t.ratioCalculationInfo}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card full-width-card">
+                  <div className="data-card-header">
+                    <div>
+                      <h2>{t.dataEntry}</h2>
+                      <p className="description">{t.dataEntryDescription}</p>
+                    </div>
+
                     <button
-                      key={key}
-                      type="button"
-                      className={`fraud-choice-card ${
-                        fraudType === key ? "selected" : ""
-                      }`}
-                      onClick={() => handleFraudTypeChange(key)}
+                      className="secondary-button"
+                      onClick={goBackToModelSelection}
                     >
-                      <div className="fraud-choice-main">
-                        <span className="fraud-choice-check">
-                          {fraudType === key ? "✓" : ""}
-                        </span>
-
-                        <div>
-                          <strong>{option.label[language]}</strong>
-                          <p>{option.fullName[language]}</p>
-                        </div>
-                      </div>
-
-                      <div className="fraud-choice-model">
-                        <span>{t.assignedModel}</span>
-                        <b>{option.modelName}</b>
-                      </div>
+                      {t.back}
                     </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="selected-model-box">
-                <span>{t.automaticModelSelection}</span>
-                <strong>{selectedFraud.modelName}</strong>
-              </div>
-
-              <button className="primary-button" onClick={goToDataEntry}>
-                {t.enterData} <span>→</span>
-              </button>
-            </div>
-          </section>
-        )}
-
-        {currentStep === 2 && (
-          <section className="full-page-section">
-            <div className="top-info-grid horizontal-info-grid">
-              <div className="mini-info-card">
-                <div className="mini-icon">📝</div>
-                <div className="mini-info-text">
-                  <h4>{t.financialDataEntry}</h4>
-                  <p>{t.financialDataEntryText}</p>
-                </div>
-              </div>
-
-              <div className="mini-info-card">
-                <div className="mini-icon">123</div>
-                <div className="mini-info-text">
-                  <h4>{t.numericFormat}</h4>
-                  <p>{t.numericFormatText}</p>
-                </div>
-              </div>
-
-              <div className="mini-info-card">
-                <div className="mini-icon">🎯</div>
-                <div className="mini-info-text">
-                  <h4>{t.ratioCalculation}</h4>
-                  <p>{t.ratioCalculationInfo}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="card full-width-card">
-              <div className="data-card-header">
-                <div>
-                  <h2>{t.dataEntry}</h2>
-                  <p className="description">{t.dataEntryDescription}</p>
-                </div>
-
-                <button
-                  className="secondary-button"
-                  onClick={goBackToModelSelection}
-                >
-                  {t.back}
-                </button>
-              </div>
-
-              <div className="selection-banner">
-                <div>
-                  <strong>{t.fraudType}</strong>
-                  <span>{getFraudDisplayName(selectedFraud)}</span>
-                </div>
-
-                <div>
-                  <strong>{t.model}</strong>
-                  <span>{selectedFraud.modelName}</span>
-                </div>
-              </div>
-
-              <div className="field-list-expanded">
-                {selectedFields.map((fieldName) => (
-                  <div className="field-row-expanded" key={fieldName}>
-                    <label>{translateField(fieldName, language)}</label>
-
-                    <input
-                      type="number"
-                      placeholder="0"
-                      value={formValues[fieldName] ?? "0"}
-                      onChange={(event) =>
-                        handleInputChange(fieldName, event.target.value)
-                      }
-                      onBlur={() => handleInputBlur(fieldName)}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              <button
-                className="primary-button calculate-button"
-                onClick={calculateRatios}
-              >
-                {t.calculateRatios} <span>→</span>
-              </button>
-            </div>
-          </section>
-        )}
-
-        {currentStep === 3 && (
-          <section className="full-page-section">
-            <div className="top-info-grid horizontal-info-grid">
-              <div className="mini-info-card">
-                <div className="mini-icon">📊</div>
-                <div className="mini-info-text">
-                  <h4>{t.calculatedRatios}</h4>
-                  <p>{t.calculatedRatiosText}</p>
-                </div>
-              </div>
-
-              <div className="mini-info-card">
-                <div className="mini-icon">0.0</div>
-                <div className="mini-info-text">
-                  <h4>{t.zeroDivisionControl}</h4>
-                  <p>{t.zeroDivisionText}</p>
-                </div>
-              </div>
-
-              <div className="mini-info-card">
-                <div className="mini-icon">✅</div>
-                <div className="mini-info-text">
-                  <h4>{t.modelInput}</h4>
-                  <p>{t.modelInputText}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="card full-width-card">
-              <div className="data-card-header">
-                <div>
-                  <h2>{t.ratioCalculation}</h2>
-                  <p className="description">{t.ratioScreenDescription}</p>
-                </div>
-
-                <button className="secondary-button" onClick={goBackToDataEntry}>
-                  {t.backToDataEntry}
-                </button>
-              </div>
-
-              <div className="selection-banner">
-                <div>
-                  <strong>{t.fraudType}</strong>
-                  <span>{getFraudDisplayName(selectedFraud)}</span>
-                </div>
-
-                <div>
-                  <strong>{t.model}</strong>
-                  <span>{selectedFraud.modelName}</span>
-                </div>
-              </div>
-
-              <div className="ratio-table">
-                <div className="ratio-table-header">
-                  <span>{t.ratio}</span>
-                  <span>{t.formula}</span>
-                  <span>{t.result}</span>
-                </div>
-
-                {calculatedRatios.map((ratio) => (
-                  <div className="ratio-table-row" key={ratio.code}>
-                    <span className="ratio-code">{ratio.code}</span>
-                    <span>{translateFormula(ratio.formula, language)}</span>
-                    <span className="ratio-value">
-                      {formatRatio(ratio.value)}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                className="primary-button calculate-button"
-                onClick={goToFinalResult}
-              >
-                {t.goToResult} <span>→</span>
-              </button>
-            </div>
-          </section>
-        )}
-
-        {currentStep === 4 && (
-          <section className="full-page-section">
-            <div className="result-report-header">
-              <div>
-                <span className="report-eyebrow">{t.analysisReport}</span>
-                <h2>{t.resultScreen}</h2>
-                <p>{t.resultDescription}</p>
-              </div>
-
-              <button className="secondary-button" onClick={goBackToDataEntry}>
-                {t.backToDataEntry}
-              </button>
-            </div>
-
-            <div className="executive-summary-grid">
-              <div className="executive-summary-card">
-                <span>{t.fraudType}</span>
-                <strong>{getFraudDisplayName(selectedFraud)}</strong>
-              </div>
-
-              <div className="executive-summary-card">
-                <span>{t.usedModel}</span>
-                <strong>{selectedFraud.modelName}</strong>
-              </div>
-
-              <div className="executive-summary-card">
-                <span>{t.ratioCount}</span>
-                <strong>{calculatedRatios.length}</strong>
-              </div>
-
-              <div className="executive-summary-card">
-                <span>{t.analysisStatus}</span>
-                <strong>
-                  {backendLoading
-                    ? t.predictionCalculating
-                    : backendResult
-                    ? t.predictionGenerated
-                    : t.pending}
-                </strong>
-              </div>
-            </div>
-
-            <div className="result-two-column-layout">
-              <div className="institutional-panel prediction-panel">
-                <div className="panel-heading">
-                  <div>
-                    <span className="section-kicker">
-                      {t.individualCompanyOutput}
-                    </span>
-                    <h3>{t.individualCompanyPrediction}</h3>
                   </div>
 
-                  <div
-                    className={`risk-badge ${
-                      backendResult?.prediction === 1 ? "risk-high" : "risk-low"
-                    }`}
+                  <div className="selection-banner">
+                    <div>
+                      <strong>{t.fraudType}</strong>
+                      <span>{getFraudDisplayName(selectedFraud)}</span>
+                    </div>
+
+                    <div>
+                      <strong>{t.model}</strong>
+                      <span>{selectedFraud.modelName}</span>
+                    </div>
+                  </div>
+
+                  <div className="field-list-expanded">
+                    {selectedFields.map((fieldName) => (
+                      <div className="field-row-expanded" key={fieldName}>
+                        <label>{translateField(fieldName, language)}</label>
+
+                        <input
+                          type="number"
+                          placeholder="0"
+                          value={formValues[fieldName] ?? "0"}
+                          onChange={(event) =>
+                            handleInputChange(fieldName, event.target.value)
+                          }
+                          onBlur={() => handleInputBlur(fieldName)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    className="primary-button calculate-button"
+                    onClick={calculateRatios}
                   >
-                    {translateBackendText(backendResult?.riskLevel, language)}
+                    {t.calculateRatios} <span>→</span>
+                  </button>
+                </div>
+              </section>
+            )}
+
+            {currentStep === 3 && (
+              <section className="full-page-section">
+                <div className="top-info-grid horizontal-info-grid">
+                  <div className="mini-info-card">
+                    <div className="mini-icon">📊</div>
+                    <div className="mini-info-text">
+                      <h4>{t.calculatedRatios}</h4>
+                      <p>{t.calculatedRatiosText}</p>
+                    </div>
+                  </div>
+
+                  <div className="mini-info-card">
+                    <div className="mini-icon">0.0</div>
+                    <div className="mini-info-text">
+                      <h4>{t.zeroDivisionControl}</h4>
+                      <p>{t.zeroDivisionText}</p>
+                    </div>
+                  </div>
+
+                  <div className="mini-info-card">
+                    <div className="mini-icon">✅</div>
+                    <div className="mini-info-text">
+                      <h4>{t.modelInput}</h4>
+                      <p>{t.modelInputText}</p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="main-prediction-box">
-                  <span>{t.predictionResult}</span>
-                  <strong>
-                    {backendLoading
-                      ? t.calculating
-                      : translateBackendText(
-                          backendResult?.predictionLabel,
-                          language
-                        )}
-                  </strong>
-                  <p>{backendResult ? t.predictionNote : t.backendNote}</p>
-                </div>
+                <div className="card full-width-card">
+                  <div className="data-card-header">
+                    <div>
+                      <h2>{t.ratioCalculation}</h2>
+                      <p className="description">{t.ratioScreenDescription}</p>
+                    </div>
 
-                <div className="prediction-metrics-grid">
+                    <button
+                      className="secondary-button"
+                      onClick={goBackToDataEntry}
+                    >
+                      {t.backToDataEntry}
+                    </button>
+                  </div>
+
+                  <div className="selection-banner">
+                    <div>
+                      <strong>{t.fraudType}</strong>
+                      <span>{getFraudDisplayName(selectedFraud)}</span>
+                    </div>
+
+                    <div>
+                      <strong>{t.model}</strong>
+                      <span>{selectedFraud.modelName}</span>
+                    </div>
+                  </div>
+
+                  <div className="ratio-table">
+                    <div className="ratio-table-header">
+                      <span>{t.ratio}</span>
+                      <span>{t.formula}</span>
+                      <span>{t.result}</span>
+                    </div>
+
+                    {calculatedRatios.map((ratio) => (
+                      <div className="ratio-table-row" key={ratio.code}>
+                        <span className="ratio-code">{ratio.code}</span>
+                        <span>{translateFormula(ratio.formula, language)}</span>
+                        <span className="ratio-value">
+                          {formatRatio(ratio.value)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    className="primary-button calculate-button"
+                    onClick={goToFinalResult}
+                  >
+                    {t.goToResult} <span>→</span>
+                  </button>
+                </div>
+              </section>
+            )}
+
+            {currentStep === 4 && (
+              <section className="full-page-section">
+                <div className="result-report-header">
                   <div>
-                    <span>{t.fraudProbability}</span>
-                    <strong>
-                      {backendResult?.fraudProbability !== null &&
-                      backendResult?.fraudProbability !== undefined
-                        ? formatPercent(backendResult.fraudProbability)
-                        : "--"}
-                    </strong>
+                    <span className="report-eyebrow">{t.analysisReport}</span>
+                    <h2>{t.resultScreen}</h2>
+                    <p>{t.resultDescription}</p>
                   </div>
 
-                  <div>
-                    <span>{t.confidenceScore}</span>
+                  <button
+                    className="secondary-button"
+                    onClick={goBackToDataEntry}
+                  >
+                    {t.backToDataEntry}
+                  </button>
+                </div>
+
+                <div className="executive-summary-grid">
+                  <div className="executive-summary-card">
+                    <span>{t.fraudType}</span>
+                    <strong>{getFraudDisplayName(selectedFraud)}</strong>
+                  </div>
+
+                  <div className="executive-summary-card">
+                    <span>{t.usedModel}</span>
+                    <strong>{selectedFraud.modelName}</strong>
+                  </div>
+
+                  <div className="executive-summary-card">
+                    <span>{t.ratioCount}</span>
+                    <strong>{calculatedRatios.length}</strong>
+                  </div>
+
+                  <div className="executive-summary-card">
+                    <span>{t.analysisStatus}</span>
                     <strong>
-                      {backendResult?.confidenceScore !== null &&
-                      backendResult?.confidenceScore !== undefined
-                        ? formatPercent(backendResult.confidenceScore)
-                        : "--"}
+                      {backendLoading
+                        ? t.predictionCalculating
+                        : backendResult
+                        ? t.predictionGenerated
+                        : t.pending}
                     </strong>
                   </div>
                 </div>
 
-                {backendError && (
-                  <div className="professional-alert error-alert">
-                    {backendError}
-                  </div>
-                )}
+                <div className="result-two-column-layout">
+                  <div className="institutional-panel prediction-panel">
+                    <div className="panel-heading">
+                      <div>
+                        <span className="section-kicker">
+                          {t.individualCompanyOutput}
+                        </span>
+                        <h3>{t.individualCompanyPrediction}</h3>
+                      </div>
 
-                {backendResult && (
-                  <div className="professional-alert success-alert">
-                    <strong>{t.backendSuccessTitle}</strong>{" "}
-                    {t.backendSuccessText}
-                  </div>
-                )}
-              </div>
+                      <div
+                        className={`risk-badge ${
+                          backendResult?.prediction === 1
+                            ? "risk-high"
+                            : "risk-low"
+                        }`}
+                      >
+                        {translateBackendText(backendResult?.riskLevel, language)}
+                      </div>
+                    </div>
 
-              <div className="institutional-panel performance-panel">
-                <div className="panel-heading">
-                  <div>
-                    <span className="section-kicker">{t.modelValidation}</span>
-                    <h3>{t.testPerformance}</h3>
+                    <div className="main-prediction-box">
+                      <span>{t.predictionResult}</span>
+                      <strong>
+                        {backendLoading
+                          ? t.calculating
+                          : translateBackendText(
+                              backendResult?.predictionLabel,
+                              language
+                            )}
+                      </strong>
+                      <p>{backendResult ? t.predictionNote : t.backendNote}</p>
+                    </div>
+
+                    <div className="prediction-metrics-grid">
+                      <div>
+                        <span>{t.fraudProbability}</span>
+                        <strong>
+                          {backendResult?.fraudProbability !== null &&
+                          backendResult?.fraudProbability !== undefined
+                            ? formatPercent(backendResult.fraudProbability)
+                            : "--"}
+                        </strong>
+                      </div>
+
+                      <div>
+                        <span>{t.confidenceScore}</span>
+                        <strong>
+                          {backendResult?.confidenceScore !== null &&
+                          backendResult?.confidenceScore !== undefined
+                            ? formatPercent(backendResult.confidenceScore)
+                            : "--"}
+                        </strong>
+                      </div>
+                    </div>
+
+                    {backendError && (
+                      <div className="professional-alert error-alert">
+                        {backendError}
+                      </div>
+                    )}
+
+                    {backendResult && (
+                      <div className="professional-alert success-alert">
+                        <strong>{t.backendSuccessTitle}</strong>{" "}
+                        {t.backendSuccessText}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="institutional-panel performance-panel">
+                    <div className="panel-heading">
+                      <div>
+                        <span className="section-kicker">
+                          {t.modelValidation}
+                        </span>
+                        <h3>{t.testPerformance}</h3>
+                      </div>
+                    </div>
+
+                    <p className="panel-note">{t.testPerformanceNote}</p>
+
+                    <div className="performance-grid">
+                      <div className="performance-item">
+                        <span>{t.accuracy}</span>
+                        <strong>
+                          {formatPercent(backendResult?.metrics?.accuracy)}
+                        </strong>
+                      </div>
+
+                      <div className="performance-item">
+                        <span>{t.precision}</span>
+                        <strong>
+                          {formatPercent(backendResult?.metrics?.precision)}
+                        </strong>
+                      </div>
+
+                      <div className="performance-item">
+                        <span>{t.recall}</span>
+                        <strong>
+                          {formatPercent(backendResult?.metrics?.recall)}
+                        </strong>
+                      </div>
+
+                      <div className="performance-item">
+                        <span>{t.f1Score}</span>
+                        <strong>
+                          {formatPercent(backendResult?.metrics?.f1_score)}
+                        </strong>
+                      </div>
+
+                      <div className="performance-item performance-item-wide">
+                        <span>{t.appGear}</span>
+                        <strong>
+                          {formatPercent(backendResult?.metrics?.appgear)}
+                        </strong>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <p className="panel-note">{t.testPerformanceNote}</p>
+                <div className="institutional-panel ratios-report-panel">
+                  <div className="result-section-title">
+                    <div>
+                      <span className="section-kicker">
+                        {t.computedFinancialRatios}
+                      </span>
+                      <h3>{t.computedFinancialRatiosTitle}</h3>
+                      <p>{t.computedFinancialRatiosText}</p>
+                    </div>
 
-                <div className="performance-grid">
-                  <div className="performance-item">
-                    <span>Accuracy</span>
-                    <strong>
-                      {formatPercent(backendResult?.metrics?.accuracy)}
-                    </strong>
+                    <button
+                      className="primary-button compact-csv-button"
+                      onClick={downloadCsvReport}
+                    >
+                      {t.downloadCsv} <span>↓</span>
+                    </button>
                   </div>
 
-                  <div className="performance-item">
-                    <span>Precision</span>
-                    <strong>
-                      {formatPercent(backendResult?.metrics?.precision)}
-                    </strong>
-                  </div>
+                  <div className="ratio-table final-ratio-table">
+                    <div className="ratio-table-header">
+                      <span>{t.ratio}</span>
+                      <span>{t.formula}</span>
+                      <span>{t.result}</span>
+                    </div>
 
-                  <div className="performance-item">
-                    <span>Recall</span>
-                    <strong>
-                      {formatPercent(backendResult?.metrics?.recall)}
-                    </strong>
-                  </div>
-
-                  <div className="performance-item">
-                    <span>F1-Score</span>
-                    <strong>
-                      {formatPercent(backendResult?.metrics?.f1_score)}
-                    </strong>
-                  </div>
-
-                  <div className="performance-item performance-item-wide">
-                    <span>AppGear</span>
-                    <strong>
-                      {formatPercent(backendResult?.metrics?.appgear)}
-                    </strong>
+                    {calculatedRatios.map((ratio) => (
+                      <div className="ratio-table-row" key={ratio.code}>
+                        <span className="ratio-code">{ratio.code}</span>
+                        <span>{translateFormula(ratio.formula, language)}</span>
+                        <span className="ratio-value">
+                          {formatRatio(ratio.value)}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="institutional-panel ratios-report-panel">
-              <div className="result-section-title">
-                <div>
-                  <span className="section-kicker">
-                    {t.computedFinancialRatios}
-                  </span>
-                  <h3>{t.computedFinancialRatiosTitle}</h3>
-                  <p>{t.computedFinancialRatiosText}</p>
-                </div>
-
-                <button
-                  className="primary-button compact-csv-button"
-                  onClick={downloadCsvReport}
-                >
-                  {t.downloadCsv} <span>↓</span>
-                </button>
-              </div>
-
-              <div className="ratio-table final-ratio-table">
-                <div className="ratio-table-header">
-                  <span>{t.ratio}</span>
-                  <span>{t.formula}</span>
-                  <span>{t.result}</span>
-                </div>
-
-                {calculatedRatios.map((ratio) => (
-                  <div className="ratio-table-row" key={ratio.code}>
-                    <span className="ratio-code">{ratio.code}</span>
-                    <span>{translateFormula(ratio.formula, language)}</span>
-                    <span className="ratio-value">
-                      {formatRatio(ratio.value)}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
+              </section>
+            )}
+          </>
         )}
-      </>
-    )}
-  </main>
+      </main>
     </div>
   );
 }
