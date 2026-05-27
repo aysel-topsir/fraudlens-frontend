@@ -1987,3 +1987,25 @@ input[readonly] {
   background: #111827;
   color: #ffffff;
 }
+
+.agentic-field-note {
+  margin-top: 10px;
+  color: #64748b;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.agentic-card textarea,
+.agentic-panel textarea,
+textarea {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.agent-textarea {
+  position: relative;
+  z-index: 50;
+  pointer-events: auto;
+  user-select: text;
+}

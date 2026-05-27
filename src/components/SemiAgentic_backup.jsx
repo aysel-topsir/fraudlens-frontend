@@ -406,7 +406,7 @@ function SemiAgentic({ language = "tr" }) {
       recommendations: "Recommendations",
 
       datasetOverview: "1. Dataset Overview",
-      classBalance: "2. Sınıf Dengesi",
+      classBalance: "2. Class Balance",
       missingValueAnalysis: "3. Missing Value Analysis",
       outlierDetection: "4. Outlier Detection",
       numericalFeatureSummary: "5. Numerical Feature Summary",
@@ -554,6 +554,7 @@ function SemiAgentic({ language = "tr" }) {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
+    formData.append("language", language);
     formData.append("language", language);
 
     try {
@@ -767,7 +768,7 @@ function SemiAgentic({ language = "tr" }) {
     ? (featureReport.correlationRanking || []).slice(0, 10)
     : [];
 
-  const translateRatioName = (name) => {
+      const translateRatioName = (name) => {
     if (language !== "en") return name;
 
     const ratioMap = {
@@ -777,8 +778,8 @@ function SemiAgentic({ language = "tr" }) {
       "FAVÖK Marjı": "EBITDA Margin",
       "TB / Ö": "Total Assets / Equity",
       "NFB / Ö": "Net Financial Debt / Equity",
-      "KVB / Ö": "Short-Term Liabilities / Equity",
       "TK / Ö": "Total Liabilities / Equity",
+      "KVB / Ö": "Short-Term Liabilities / Equity",
       "N / KVB": "Cash / Short-Term Liabilities",
       "NDK / Ö": "Net Profit / Equity",
       "İTTA / TTA": "Receivables / Total Assets",
@@ -787,7 +788,6 @@ function SemiAgentic({ language = "tr" }) {
       "H / TA": "Revenue / Total Assets",
       "H / MDV": "Revenue / Fixed Assets",
       "FAVÖK / İDAFG": "EBITDA / Financing Expenses",
-      "FAVÖK Marjı": "EBITDA Margin",
       "BK / H": "Gross Profit / Revenue",
       "VÖK / H": "Profit Before Tax / Revenue",
       "NDK / TK": "Net Profit / Total Liabilities",
@@ -795,53 +795,9 @@ function SemiAgentic({ language = "tr" }) {
       "SM / Stok": "Cost of Sales / Inventory",
       "H / TV": "Revenue / Total Assets",
       "H / Ö": "Revenue / Equity",
-
-      "TY/TÖ": "Total Liabilities / Total Equity",
-      "TY / TÖ": "Total Liabilities / Total Equity",
-      "NFB/TÖ": "Net Financial Debt / Total Equity",
-      "NFB / TÖ": "Net Financial Debt / Total Equity",
-      "TKVY/TÖ": "Short-Term Liabilities / Total Equity",
-      "TKVY / TÖ": "Short-Term Liabilities / Total Equity",
-      "T.DÖN.V/ TKVY": "Current Assets / Short-Term Liabilities",
-      "T.DÖN.V / TKVY": "Current Assets / Short-Term Liabilities",
-      "T.DÖN.V-Stok/ TKVY": "Current Assets minus Inventory / Short-Term Liabilities",
-      "T.DÖN.V-Stok / TKVY": "Current Assets minus Inventory / Short-Term Liabilities",
-      "NAKİT/ TKVY": "Cash / Short-Term Liabilities",
-      "NAKİT / TKVY": "Cash / Short-Term Liabilities",
-      "DK(Z)/TÖ": "Net Profit or Loss / Total Equity",
-      "DK(Z) / TÖ": "Net Profit or Loss / Total Equity",
-      "İTTA/TA": "Receivables / Total Assets",
-      "İTTA / TA": "Receivables / Total Assets",
-      "İTTB/TB": "Receivables / Total Liabilities",
-      "İTTB / TB": "Receivables / Total Liabilities",
-      "MDV/TÖ": "Fixed Assets / Total Equity",
-      "MDV / TÖ": "Fixed Assets / Total Equity",
-      "H/TA": "Revenue / Total Assets",
-      "H/MDV": "Revenue / Fixed Assets",
-      "SFVÖK-EFK/MDV": "EBITDA before Financing Expenses / Fixed Assets",
-      "SFVÖK-EFK/TV": "EBITDA before Financing Expenses / Total Assets",
-      "DK(Z)/MDV": "Net Profit or Loss / Fixed Assets",
-      "EFK/H": "Financing Expenses / Revenue",
-      "EFDG/H": "Financing Expense-Like Costs / Revenue",
-      "SFVÖK/EFK": "EBITDA / Financing Expenses",
-      "EFK/TV": "Financing Expenses / Total Assets",
-      "DK(Z)/TK": "Net Profit or Loss / Total Liabilities",
-      "NetDönKar*/MDV*": "Adjusted Net Profit / Adjusted Fixed Assets",
-      "SFDK(Z)/TÖ": "Adjusted Net Profit or Loss / Total Equity",
-      "FAVÖK/T.DuranV": "EBITDA / Total Non-Current Assets",
     };
 
     return ratioMap[name] || name;
-  };
-
-  const translateSuggestionText = (textValue) => {
-    if (language !== "en" || !textValue) return textValue;
-
-    let translated = textValue;
-    translated = translated.replace("değişkeni redundancy açısından incelenebilir.", "variable may be reviewed in terms of redundancy.");
-    translated = translated.replace("değişkeni özellik tekrarına yol açabilir.", "variable may cause feature redundancy.");
-
-    return translateRatioName(translated);
   };
 
   const weakFeatures = featureReport
@@ -1077,7 +1033,7 @@ function SemiAgentic({ language = "tr" }) {
                     <ReportSection title={t.correlationFS}>
                       <div className="agent-column-grid">
                         {(featureReport.correlationFS?.selectedFeatures || []).map((feature) => (
-                          <span key={feature}>{translateRatioName(feature)}</span>
+                          <span key={feature}>{feature}</span>
                         ))}
                       </div>
                     </ReportSection>
@@ -1085,7 +1041,7 @@ function SemiAgentic({ language = "tr" }) {
                     <ReportSection title={t.rfeFS}>
                       <div className="agent-column-grid">
                         {(featureReport.rfeFS?.selectedFeatures || []).map((feature) => (
-                          <span key={feature}>{translateRatioName(feature)}</span>
+                          <span key={feature}>{feature}</span>
                         ))}
                       </div>
                     </ReportSection>
@@ -1094,7 +1050,7 @@ function SemiAgentic({ language = "tr" }) {
                   <ReportSection title={t.mrmrFS}>
                     <div className="agent-column-grid">
                       {(featureReport.mrmrFS?.selectedFeatures || []).map((feature) => (
-                        <span key={feature}>{translateRatioName(feature)}</span>
+                        <span key={feature}>{feature}</span>
                       ))}
                     </div>
                   </ReportSection>
@@ -1103,7 +1059,7 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="agent-column-grid">
                       {(featureReport.consensusSelectedFeatures || []).length > 0 ? (
                         featureReport.consensusSelectedFeatures.map((feature) => (
-                          <span key={feature}>{translateRatioName(feature)}</span>
+                          <span key={feature}>{feature}</span>
                         ))
                       ) : (
                         <span>-</span>
@@ -1127,7 +1083,7 @@ function SemiAgentic({ language = "tr" }) {
                             .slice(0, 10)
                             .map((item) => (
                               <tr key={item.feature}>
-                                <td>{translateRatioName(item.feature)}</td>
+                                <td>{item.feature}</td>
                                 <td>{formatNumber(item.correlation)}</td>
                                 <td>{formatNumber(item.absoluteCorrelation)}</td>
                               </tr>
@@ -1154,7 +1110,7 @@ function SemiAgentic({ language = "tr" }) {
                             .slice(0, 10)
                             .map((item) => (
                               <tr key={item.feature}>
-                                <td>{translateRatioName(item.feature)}</td>
+                                <td>{item.feature}</td>
                                 <td>{formatNumber(item.relevance)}</td>
                                 <td>{formatNumber(item.redundancy)}</td>
                                 <td>{formatNumber(item.mrmrScore)}</td>
@@ -1181,7 +1137,7 @@ function SemiAgentic({ language = "tr" }) {
                             .slice(0, 10)
                             .map((item) => (
                               <tr key={item.feature}>
-                                <td>{translateRatioName(item.feature)}</td>
+                                <td>{item.feature}</td>
                                 <td>{item.rank}</td>
                                 <td>{item.selected ? "Yes" : "No"}</td>
                               </tr>
@@ -1207,10 +1163,10 @@ function SemiAgentic({ language = "tr" }) {
                           {(featureReport.redundantPairs || []).length > 0 ? (
                             featureReport.redundantPairs.slice(0, 10).map((item, index) => (
                               <tr key={`${item.featureA}-${item.featureB}-${index}`}>
-                                <td>{translateRatioName(item.featureA)}</td>
-                                <td>{translateRatioName(item.featureB)}</td>
+                                <td>{item.featureA}</td>
+                                <td>{item.featureB}</td>
                                 <td>{formatNumber(item.correlation)}</td>
-                                <td>{translateSuggestionText(item.suggestion)}</td>
+                                <td>{item.suggestion}</td>
                               </tr>
                             ))
                           ) : (
@@ -1227,7 +1183,7 @@ function SemiAgentic({ language = "tr" }) {
                     <div className="agent-column-grid">
                       {(featureReport.recommendedRemoval || []).length > 0 ? (
                         featureReport.recommendedRemoval.map((feature) => (
-                          <span key={feature}>{translateRatioName(feature)}</span>
+                          <span key={feature}>{feature}</span>
                         ))
                       ) : (
                         <span>-</span>
@@ -1590,7 +1546,7 @@ function SemiAgentic({ language = "tr" }) {
                         <tbody>
                           {(xaiReport.topInfluentialFeatures || []).map((item) => (
                             <tr key={item.feature}>
-                              <td>{translateRatioName(item.feature)}</td>
+                              <td>{item.feature}</td>
                               <td>{formatNumber(item.importanceProxy)}</td>
                               <td>{formatNumber(item.correlation)}</td>
                               <td>{item.direction}</td>
@@ -1705,7 +1661,7 @@ function SemiAgentic({ language = "tr" }) {
                 <ReportSection title={t.columns}>
                   <div className="agent-column-grid">
                     {(previewData.columns || []).map((column) => (
-                      <span key={column}>{translateRatioName(column)}</span>
+                      <span key={column}>{column}</span>
                     ))}
                   </div>
                 </ReportSection>
@@ -1717,7 +1673,7 @@ function SemiAgentic({ language = "tr" }) {
                     <thead>
                       <tr>
                         {visiblePreviewColumns.map((column) => (
-                          <th key={column}>{translateRatioName(column)}</th>
+                          <th key={column}>{column}</th>
                         ))}
                       </tr>
                     </thead>
