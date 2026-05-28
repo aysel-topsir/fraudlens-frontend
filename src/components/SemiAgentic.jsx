@@ -30,7 +30,7 @@ function SemiAgentic({ language = "tr" }) {
   const text = {
     tr: {
       layer: "Yarı-Ajan Destek Katmanı",
-      title: "Yarı-Ajan Destekli Hile Analiz Pipeline’ı",
+      title: "Yarı-Ajan Destekli Hile Analiz Süreci",
       description:
         "Bu modül, yüklenen veri setini adım adım analiz ederek veri inceleme, özellik seçimi, model optimizasyonu ve açıklanabilir karar destek raporu üretmek için tasarlanmıştır.",
       upload: "Veri Yükleme",
@@ -44,7 +44,7 @@ function SemiAgentic({ language = "tr" }) {
 
       uploadTitle: "0. Veri Yükleme",
       uploadDescription:
-        "CSV veri setini yükleyerek semi-agentic analiz sürecini başlatın. Dosya yüklendikten sonra veri önizleme ve pipeline başlatma adımları aktifleşecektir.",
+        "CSV veri setini yükleyerek yarı-ajan analiz sürecini başlatın. Dosya yüklendikten sonra veri önizleme ve pipeline başlatma adımları aktifleşecektir.",
 
       analystTitle: "1. Veri Analisti",
       analystDescription:
@@ -163,15 +163,15 @@ function SemiAgentic({ language = "tr" }) {
       selectedFile: "Seçilen dosya",
       previewButton: "VERİ ÖNİZLEME",
       previewLoading: "Veri analiz ediliyor...",
-      startButton: "PIPELINE’I BAŞLAT",
+      startButton: "ANALİZ SÜRECİNİ BAŞLAT",
       resetButton: "SIFIRLA",
       previousStage: "← Önceki Aşamaya Dön",
       downloadReport: "RAPORU İNDİR",
       completeAnalysis: "ANALİZİ TAMAMLA",
       newAnalysis: "YENİ ANALİZ BAŞLAT",
-      pipelineCompletedTitle: "Pipeline Tamamlandı",
+      pipelineCompletedTitle: "Analiz Süreci Tamamlandı",
       pipelineCompletedText:
-        "Semi-agentic analiz süreci başarıyla tamamlandı. Veri analizi, özellik seçimi, model optimizasyonu ve açıklanabilirlik raporu üretildi.",
+        "Yarı-ajan analiz süreci başarıyla tamamlandı. Veri analizi, özellik seçimi, model optimizasyonu ve açıklanabilirlik raporu üretildi.",
 
       noteTitle: "Varsayılan Analiz Planı",
       noteText:
@@ -522,28 +522,147 @@ function SemiAgentic({ language = "tr" }) {
   }
 
   function handleDownloadAgenticReport() {
-    const reportPayload = {
-      generatedAt: new Date().toISOString(),
-      language,
-      fileName: selectedFile?.name ?? null,
-      reports: {
-        dataPreview: previewData,
-        dataAnalyst: analystReport,
-        featureSelector: featureReport,
-        modelOptimizer: optimizerReport,
-        xaiAgent: xaiReport,
-      },
+    const reportDate = new Date().toLocaleString(
+      language === "tr" ? "tr-TR" : "en-US"
+    );
+
+    const safeStringify = (value) => {
+      if (!value) return "";
+      if (typeof value === "string") return value;
+      return JSON.stringify(value, null, 2);
     };
 
-    const blob = new Blob([JSON.stringify(reportPayload, null, 2)], {
-      type: "application/json",
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="${language === "tr" ? "tr" : "en"}">
+<head>
+  <meta charset="UTF-8" />
+  <title>${
+    language === "tr"
+      ? "Yarı-Ajan Hile Analizi Raporu"
+      : "Semi-Agentic Fraud Analysis Report"
+  }</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+      margin: 0;
+      padding: 40px;
+    }
+    .report {
+      max-width: 1000px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+    h1 {
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    h2 {
+      color: #1e3a8a;
+      border-bottom: 1px solid #dbeafe;
+      padding-bottom: 8px;
+      margin-top: 32px;
+    }
+    .meta {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+    .section {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #64748b;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="report">
+    <h1>${
+      language === "tr"
+        ? "Yarı-Ajan Hile Analizi Raporu"
+        : "Semi-Agentic Fraud Analysis Report"
+    }</h1>
+
+    <div class="meta">
+      ${
+        language === "tr"
+          ? `Rapor oluşturma tarihi: ${reportDate}`
+          : `Report generated on: ${reportDate}`
+      }
+      <br />
+      ${
+        language === "tr"
+          ? `Dosya adı: ${selectedFile?.name || "-"}`
+          : `File name: ${selectedFile?.name || "-"}`
+      }
+    </div>
+
+    <h2>${language === "tr" ? "Veri Önizleme" : "Data Preview"}</h2>
+    <div class="section">
+      <pre>${safeStringify(previewData) || (language === "tr" ? "Henüz veri önizlemesi oluşturulmadı." : "No data preview generated yet.")}</pre>
+    </div>
+
+    <h2>${language === "tr" ? "Veri Analizi" : "Data Analysis"}</h2>
+    <div class="section">
+      <pre>${safeStringify(analystReport) || (language === "tr" ? "Henüz veri analizi raporu oluşturulmadı." : "No data analysis report generated yet.")}</pre>
+    </div>
+
+    <h2>${language === "tr" ? "Özellik Seçimi" : "Feature Selection"}</h2>
+    <div class="section">
+      <pre>${safeStringify(featureReport) || (language === "tr" ? "Henüz özellik seçimi raporu oluşturulmadı." : "No feature selection report generated yet.")}</pre>
+    </div>
+
+    <h2>${language === "tr" ? "Model Optimizasyonu" : "Model Optimization"}</h2>
+    <div class="section">
+      <pre>${safeStringify(optimizerReport) || (language === "tr" ? "Henüz model optimizasyonu raporu oluşturulmadı." : "No model optimization report generated yet.")}</pre>
+    </div>
+
+    <h2>${language === "tr" ? "Açıklanabilir Karar Desteği" : "Explainable Decision Support"}</h2>
+    <div class="section">
+      <pre>${safeStringify(xaiReport) || (language === "tr" ? "Henüz açıklanabilir karar desteği raporu oluşturulmadı." : "No explainable decision-support report generated yet.")}</pre>
+    </div>
+
+    <div class="footer">
+      Fraud Analytics Decision Platform | Semi-Agentic Decision Support Layer
+    </div>
+  </div>
+</body>
+</html>
+`;
+
+    const blob = new Blob([htmlContent], {
+      type: "text/html;charset=utf-8",
     });
 
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
 
     link.href = url;
-    link.download = `semi-agentic-report-${Date.now()}.json`;
+    link.download =
+      language === "tr"
+        ? `yari-ajan-hile-analizi-raporu-${Date.now()}.html`
+        : `semi-agentic-fraud-analysis-report-${Date.now()}.html`;
+
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -923,8 +1042,43 @@ function SemiAgentic({ language = "tr" }) {
     return ratioMap[name] || name;
   };
 
+  const translateMethodName = (textValue) => {
+    if (!textValue) return textValue;
+
+    if (language === "tr") {
+      const trMap = {
+        "Correlation FS": "Korelasyon FS",
+        "Correlation-based Feature Selection":
+          "Korelasyon Tabanlı Özellik Seçimi",
+        "RFE": "RFE",
+        "mRMR-inspired Feature Selection": "mRMR Esinli Özellik Seçimi",
+        "Hybrid Stacking": "Hibrit Stacking",
+        "Optimized OOF Stacking": "Optimize Edilmiş OOF Stacking",
+      };
+
+      return trMap[textValue] || textValue;
+    }
+
+    return textValue;
+  };
+
   const translateSuggestionText = (textValue) => {
-    if (language !== "en" || !textValue) return textValue;
+    if (!textValue) return textValue;
+
+    if (language === "tr") {
+      let translated = textValue;
+
+      translated = translated.replaceAll(
+        "variable may be reviewed in terms of redundancy.",
+        "değişkeni tekrar açısından incelenebilir."
+      );
+      translated = translated.replaceAll(
+        "variable may cause feature redundancy.",
+        "değişkeni özellik tekrarına yol açabilir."
+      );
+
+      return translated;
+    }
 
     let translated = textValue;
 
@@ -941,9 +1095,54 @@ function SemiAgentic({ language = "tr" }) {
   };
 
   const translateReportText = (textValue) => {
-    if (language !== "en" || !textValue) return textValue;
+    if (!textValue) return textValue;
 
     let translated = textValue;
+
+    if (language === "tr") {
+      translated = translated.replaceAll(
+        "Correlation-based feature selection was selected as the final strategy because it is stable, interpretable, computationally transparent, and compatible with the proposed hybrid stacking framework.",
+        "Korelasyon tabanlı özellik seçimi nihai strateji olarak seçilmiştir; çünkü kararlı, yorumlanabilir, hesaplama açısından şeffaf ve önerilen hibrit stacking mimarisiyle uyumludur."
+      );
+      translated = translated.replaceAll(
+        "Correlation FS, RFE, and mRMR-inspired methods were evaluated separately.",
+        "Korelasyon FS, RFE ve mRMR esinli yöntemler ayrı ayrı değerlendirilmiştir."
+      );
+      translated = translated.replaceAll(
+        "Correlation-based feature selection is recommended as the final method because it provides a more interpretable and stable structure for the hybrid stacking architecture used in the thesis.",
+        "Nihai yöntem olarak korelasyon tabanlı özellik seçimi önerilmektedir; çünkü tezde kullanılan hibrit stacking mimarisi için daha yorumlanabilir ve daha kararlı bir yapı sunmaktadır."
+      );
+      translated = translated.replaceAll(
+        "RFE was evaluated as a supporting comparison method because it provides a model-dependent selection mechanism.",
+        "RFE, modele bağlı bir seçim mekanizması sunduğu için destekleyici karşılaştırma yöntemi olarak değerlendirilmiştir."
+      );
+      translated = translated.replaceAll(
+        "The mRMR-inspired approach provides a complementary analysis aimed at reducing redundant variables while preserving target-variable relevance.",
+        "mRMR esinli yaklaşım, hedef değişkenle ilişkiyi korurken tekrarlı değişkenleri azaltmaya yönelik tamamlayıcı bir analiz sağlamaktadır."
+      );
+      translated = translated.replaceAll(
+        "The consensus feature list supports pre-modeling decisions by showing variables selected by multiple methods.",
+        "Ortak özellik listesi, birden fazla yöntem tarafından seçilen değişkenleri göstererek modelleme öncesi karar desteği sağlar."
+      );
+      translated = translated.replaceAll(
+        "Class distribution should be checked before modeling.",
+        "Sınıf dağılımı modelleme öncesinde kontrol edilmelidir."
+      );
+      translated = translated.replaceAll(
+        "If missing values are present, an appropriate imputation strategy should be determined.",
+        "Eksik değer bulunması durumunda uygun imputasyon stratejisi belirlenmelidir."
+      );
+      translated = translated.replaceAll(
+        "Outliers may be evaluated using an IQR-based capping method.",
+        "Aykırı değerler IQR tabanlı sınırlandırma yöntemiyle değerlendirilebilir."
+      );
+      translated = translated.replaceAll(
+        "Highly correlated variables should be reviewed in terms of feature redundancy.",
+        "Yüksek korelasyonlu değişkenler özellik tekrarı açısından incelenmelidir."
+      );
+
+      return translateMethodName(translated);
+    }
 
     translated = translated.replaceAll(
       "Sınıf dağılımı modelleme öncesinde kontrol edilmelidir.",
@@ -961,7 +1160,6 @@ function SemiAgentic({ language = "tr" }) {
       "Yüksek korelasyonlu değişkenler özellik tekrarları açısından incelenmelidir.",
       "Highly correlated variables should be reviewed in terms of feature redundancy."
     );
-
     translated = translated.replaceAll(
       "Correlation FS, RFE ve mRMR-inspired yöntemleri ayrı ayrı değerlendirilmiştir.",
       "Correlation FS, RFE, and mRMR-inspired methods were evaluated separately."
@@ -1173,7 +1371,11 @@ function SemiAgentic({ language = "tr" }) {
                         <div className="pro-metric-icon">★</div>
                         <div>
                           <span>{t.recommendedMethod}</span>
-                          <strong>{featureReport.recommendedMethod ?? "-"}</strong>
+                          <strong>
+                            {translateMethodName(
+                              featureReport.recommendedMethod ?? "-"
+                            )}
+                          </strong>
                         </div>
                       </div>
 
@@ -1204,7 +1406,7 @@ function SemiAgentic({ language = "tr" }) {
                       </div>
                     </div>
 
-                    <p>{featureReport.recommendedReason}</p>
+                    <p>{translateReportText(featureReport.recommendedReason)}</p>
                   </ReportSection>
 
                   <ReportSection title={t.methodComparison}>
@@ -1225,12 +1427,12 @@ function SemiAgentic({ language = "tr" }) {
                           {(featureReport.methodComparison || []).map(
                             (item) => (
                               <tr key={item.method}>
-                                <td>{item.method}</td>
+                                <td>{translateMethodName(item.method)}</td>
                                 <td>{item.selectedFeatureCount}</td>
-                                <td>{item.interpretability}</td>
-                                <td>{item.redundancyControl}</td>
-                                <td>{item.stability}</td>
-                                <td>{item.thesisCompatibility}</td>
+                                <td>{translateReportText(item.interpretability)}</td>
+                                <td>{translateReportText(item.redundancyControl)}</td>
+                                <td>{translateReportText(item.stability)}</td>
+                                <td>{translateReportText(item.thesisCompatibility)}</td>
                               </tr>
                             )
                           )}
@@ -1391,7 +1593,11 @@ function SemiAgentic({ language = "tr" }) {
                                   <td>{translateRatioName(item.featureA)}</td>
                                   <td>{translateRatioName(item.featureB)}</td>
                                   <td>{formatNumber(item.correlation)}</td>
-                                  <td>{translateReportText(translateSuggestionText(item.suggestion))}</td>
+                                  <td>
+                                    {translateReportText(
+                                      translateSuggestionText(item.suggestion)
+                                    )}
+                                  </td>
                                 </tr>
                               ))
                           ) : (
@@ -1494,8 +1700,9 @@ function SemiAgentic({ language = "tr" }) {
                         <div>
                           <span>{t.architectureName}</span>
                           <strong>
-                            {optimizerReport.recommendedArchitecture?.name ??
-                              "-"}
+                            {translateMethodName(
+                              optimizerReport.recommendedArchitecture?.name ?? "-"
+                            )}
                           </strong>
                         </div>
                       </div>
@@ -1523,12 +1730,16 @@ function SemiAgentic({ language = "tr" }) {
                       </div>
                     </div>
 
-                    <p>{optimizerReport.recommendedArchitecture?.calibration}</p>
                     <p>
-                      {
+                      {translateReportText(
+                        optimizerReport.recommendedArchitecture?.calibration
+                      )}
+                    </p>
+                    <p>
+                      {translateReportText(
                         optimizerReport.recommendedArchitecture
                           ?.thresholdStrategy
-                      }
+                      )}
                     </p>
                   </ReportSection>
 
@@ -1539,7 +1750,7 @@ function SemiAgentic({ language = "tr" }) {
                           optimizerReport.recommendedArchitecture
                             ?.preprocessing || []
                         ).map((item) => (
-                          <span key={item}>{item}</span>
+                          <span key={item}>{translateReportText(item)}</span>
                         ))}
                       </div>
                     </ReportSection>
@@ -1584,7 +1795,7 @@ function SemiAgentic({ language = "tr" }) {
                             .filter(Boolean)
                             .map((item) => (
                               <tr key={item.architecture}>
-                                <td>{item.architecture}</td>
+                                <td>{translateMethodName(item.architecture)}</td>
                                 <td>{item.threshold}</td>
                                 <td>{formatNumber(item.accuracy)}</td>
                                 <td>{formatNumber(item.precisionWeighted)}</td>
@@ -1600,7 +1811,7 @@ function SemiAgentic({ language = "tr" }) {
                       </table>
                     </div>
 
-                    <p>{optimizerReport.testSetPerformance?.note}</p>
+                    <p>{translateReportText(optimizerReport.testSetPerformance?.note)}</p>
                   </ReportSection>
 
                   <ReportSection title={t.baselineModelComparison}>
@@ -1619,9 +1830,9 @@ function SemiAgentic({ language = "tr" }) {
                             (item) => (
                               <tr key={item.model}>
                                 <td>{item.model}</td>
-                                <td>{item.role}</td>
-                                <td>{item.strength}</td>
-                                <td>{item.limitation}</td>
+                                <td>{translateReportText(item.role)}</td>
+                                <td>{translateReportText(item.strength)}</td>
+                                <td>{translateReportText(item.limitation)}</td>
                               </tr>
                             )
                           )}
@@ -1667,18 +1878,17 @@ function SemiAgentic({ language = "tr" }) {
                       </div>
                     </div>
 
-                    <p>{optimizerReport.thresholdOptimization?.rationale}</p>
+                    <p>{translateReportText(optimizerReport.thresholdOptimization?.rationale)}</p>
                   </ReportSection>
 
                   <ReportSection title={t.classImbalanceStrategy}>
-                    <p>{optimizerReport.classImbalanceStrategy?.diagnosis}</p>
+                    <p>{translateReportText(optimizerReport.classImbalanceStrategy?.diagnosis)}</p>
                     <div className="agent-note-box">
                       <p>
                         •{" "}
-                        {
-                          optimizerReport.classImbalanceStrategy
-                            ?.recommendation
-                        }
+                        {translateReportText(
+                          optimizerReport.classImbalanceStrategy?.recommendation
+                        )}
                       </p>
                     </div>
                   </ReportSection>
@@ -1686,19 +1896,29 @@ function SemiAgentic({ language = "tr" }) {
                   <ReportSection title={t.calibrationReliability}>
                     <p>
                       <strong>{t.strategy}:</strong>{" "}
-                      {optimizerReport.calibrationReliability?.strategy}
+                      {translateReportText(
+                        optimizerReport.calibrationReliability?.strategy
+                      )}
                     </p>
                     <p>
                       <strong>{t.purpose}:</strong>{" "}
-                      {optimizerReport.calibrationReliability?.purpose}
+                      {translateReportText(
+                        optimizerReport.calibrationReliability?.purpose
+                      )}
                     </p>
-                    <p>{optimizerReport.calibrationReliability?.recommendation}</p>
+                    <p>
+                      {translateReportText(
+                        optimizerReport.calibrationReliability?.recommendation
+                      )}
+                    </p>
                   </ReportSection>
 
                   <ReportSection title={t.hyperparameterStrategy}>
                     <p>
                       <strong>{t.searchType}:</strong>{" "}
-                      {optimizerReport.hyperparameterStrategy?.searchType}
+                      {translateReportText(
+                        optimizerReport.hyperparameterStrategy?.searchType
+                      )}
                     </p>
                     <p>
                       <strong>{t.metaLearner}:</strong>{" "}
@@ -1717,7 +1937,11 @@ function SemiAgentic({ language = "tr" }) {
                       ))}
                     </div>
 
-                    <p>{optimizerReport.hyperparameterStrategy?.recommendation}</p>
+                    <p>
+                      {translateReportText(
+                        optimizerReport.hyperparameterStrategy?.recommendation
+                      )}
+                    </p>
                   </ReportSection>
 
                   <ReportSection title={t.optimizerRecommendations}>
@@ -1735,11 +1959,11 @@ function SemiAgentic({ language = "tr" }) {
                       {(
                         optimizerReport.finalDecision?.recommendedPipeline || []
                       ).map((item) => (
-                        <span key={item}>{item}</span>
+                        <span key={item}>{translateReportText(item)}</span>
                       ))}
                     </div>
 
-                    <p>{optimizerReport.finalDecision?.summary}</p>
+                    <p>{translateReportText(optimizerReport.finalDecision?.summary)}</p>
                   </ReportSection>
 
                   <div className="agent-next-step-box">
@@ -1814,10 +2038,10 @@ function SemiAgentic({ language = "tr" }) {
                   <ReportSection title={t.explainabilityMethod}>
                     <div className="agent-note-box">
                       <p>
-                        <strong>{xaiReport.explainabilityMethod?.name}</strong>
+                        <strong>{translateReportText(xaiReport.explainabilityMethod?.name)}</strong>
                       </p>
-                      <p>{xaiReport.explainabilityMethod?.purpose}</p>
-                      <p>{xaiReport.explainabilityMethod?.scope}</p>
+                      <p>{translateReportText(xaiReport.explainabilityMethod?.purpose)}</p>
+                      <p>{translateReportText(xaiReport.explainabilityMethod?.scope)}</p>
                     </div>
                   </ReportSection>
 
@@ -1838,10 +2062,14 @@ function SemiAgentic({ language = "tr" }) {
                           {(xaiReport.topInfluentialFeatures || []).map(
                             (item) => (
                               <tr key={item.feature}>
-                                <td>{translateReportText(translateRatioName(item.feature))}</td>
+                                <td>
+                                  {translateReportText(
+                                    translateRatioName(item.feature)
+                                  )}
+                                </td>
                                 <td>{formatNumber(item.importanceProxy)}</td>
                                 <td>{formatNumber(item.correlation)}</td>
-                                <td>{item.direction}</td>
+                                <td>{translateReportText(item.direction)}</td>
                                 <td>{translateReportText(item.interpretation)}</td>
                               </tr>
                             )
@@ -1853,17 +2081,17 @@ function SemiAgentic({ language = "tr" }) {
 
                   <ReportSection title={t.xaiRiskNarrative}>
                     <div className="agent-note-box">
-                      <p>{xaiReport.riskNarrative?.summary}</p>
-                      <p>{xaiReport.riskNarrative?.analystInterpretation}</p>
-                      <p>{xaiReport.riskNarrative?.decisionSupportRole}</p>
+                      <p>{translateReportText(xaiReport.riskNarrative?.summary)}</p>
+                      <p>{translateReportText(xaiReport.riskNarrative?.analystInterpretation)}</p>
+                      <p>{translateReportText(xaiReport.riskNarrative?.decisionSupportRole)}</p>
                     </div>
                   </ReportSection>
 
                   <ReportSection title={t.xaiConfidence}>
                     <div className="agent-note-box">
-                      <p>{xaiReport.confidenceInterpretation?.lowRisk}</p>
-                      <p>{xaiReport.confidenceInterpretation?.highRisk}</p>
-                      <p>{xaiReport.confidenceInterpretation?.caution}</p>
+                      <p>{translateReportText(xaiReport.confidenceInterpretation?.lowRisk)}</p>
+                      <p>{translateReportText(xaiReport.confidenceInterpretation?.highRisk)}</p>
+                      <p>{translateReportText(xaiReport.confidenceInterpretation?.caution)}</p>
                     </div>
                   </ReportSection>
 
@@ -1877,9 +2105,9 @@ function SemiAgentic({ language = "tr" }) {
                     </div>
                   </ReportSection>
 
-                  <ReportSection title={xaiReport.finalExplanation?.title}>
+                  <ReportSection title={translateReportText(xaiReport.finalExplanation?.title)}>
                     <div className="agent-note-box">
-                      <p>{xaiReport.finalExplanation?.summary}</p>
+                      <p>{translateReportText(xaiReport.finalExplanation?.summary)}</p>
                     </div>
                   </ReportSection>
 
