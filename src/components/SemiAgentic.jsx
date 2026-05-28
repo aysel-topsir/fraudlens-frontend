@@ -753,7 +753,7 @@ function SemiAgentic({ language = "tr" }) {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/agentic/upload-preview",
+        "https://fraudlens-backend-tkse.onrender.com/agentic/upload-preview",
         {
           method: "POST",
           body: formData,
@@ -793,7 +793,7 @@ function SemiAgentic({ language = "tr" }) {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/agentic/data-analyst",
+        "https://fraudlens-backend-tkse.onrender.com/agentic/data-analyst",
         {
           method: "POST",
           body: formData,
@@ -830,7 +830,7 @@ function SemiAgentic({ language = "tr" }) {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/agentic/feature-selector",
+        "https://fraudlens-backend-tkse.onrender.com/agentic/feature-selector",
         {
           method: "POST",
           body: formData,
@@ -867,7 +867,7 @@ function SemiAgentic({ language = "tr" }) {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/agentic/model-optimizer",
+        "https://fraudlens-backend-tkse.onrender.com/agentic/model-optimizer",
         {
           method: "POST",
           body: formData,
@@ -904,7 +904,7 @@ function SemiAgentic({ language = "tr" }) {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/agentic/xai-agent",
+        "https://fraudlens-backend-tkse.onrender.com/agentic/xai-agent",
         {
           method: "POST",
           body: formData,
