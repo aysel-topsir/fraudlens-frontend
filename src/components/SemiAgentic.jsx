@@ -1267,9 +1267,20 @@ function SemiAgentic({ language = "tr" }) {
             <>
               <div className="upload-box">
                 <label>{t.fileLabel}</label>
-                <div className="upload-input-row">
-                  <input type="file" accept=".csv" onChange={handleFileChange} />
-                  <span>
+                <div className="upload-input-row custom-file-upload">
+                  <input
+                    id="semiAgenticCsvFile"
+                    className="hidden-file-input"
+                    type="file"
+                    accept=".csv"
+                    onChange={handleFileChange}
+                  />
+
+                  <label htmlFor="semiAgenticCsvFile" className="file-upload-button">
+                    {language === "tr" ? "Dosya Seç" : "Choose File"}
+                  </label>
+
+                  <span className="file-upload-name">
                     {selectedFile
                       ? `${t.selectedFile}: ${selectedFile.name}`
                       : t.filePlaceholder}
