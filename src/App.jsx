@@ -27,7 +27,7 @@ const translations = {
       "Seçim tamamlandıktan sonra kullanıcı “VERİLERİ GİR” butonu ile finansal tablo kalemlerini gireceği ekrana geçer.",
     modelSelectionDescription:
       "Hile türünü seçin. İlgili hibrit model otomatik olarak atanır.",
-    fraudType: "Hile Türü",
+    fraudType: "Hile Tipi",
     assignedModel: "Atanan Model",
     automaticModelSelection: "Otomatik Model Seçimi",
     enterData: "VERİLERİ GİR",
@@ -851,7 +851,7 @@ function App() {
   const selectedFields = inputFields[fraudType];
 
   function getFraudDisplayName(option) {
-    return `${option.label[language]}: ${option.fullName[language]}`;
+    return option.fullName[language];
   }
 
   function handleFraudTypeChange(newFraudType) {
@@ -1232,8 +1232,7 @@ function App() {
                             </span>
 
                             <div>
-                              <strong>{option.label[language]}</strong>
-                              <p>{option.fullName[language]}</p>
+                              <strong>{option.fullName[language]}</strong>
                             </div>
                           </div>
 
